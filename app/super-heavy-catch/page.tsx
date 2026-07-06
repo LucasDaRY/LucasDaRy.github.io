@@ -264,7 +264,7 @@ export default function SuperHeavyCatchPage() {
               <img src="/logos/spacex.svg" alt="SpaceX" className="h-13 w-auto dark:invert" />
               <p className="-mt-3 text-xs opacity-70">Not affiliated</p>
             </div>
-            <div className="flex flex-col items-center text-white/60">
+            <div className="flex flex-col items-center text-zinc-600 dark:text-white/60">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 animate-bounce"
