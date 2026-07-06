@@ -198,7 +198,7 @@ export default function SuperHeavyCatchPage() {
          Video is a client-only enhancement: we start without it so server and
          first client render match (avoids hydration mismatch), then add it
          after mount if the connection is decent. */}
-      <header className="relative h-screen w-full overflow-hidden">
+      <header className="relative h-dvh w-full overflow-hidden">
         {/* Background base layer — the JPEG always shows immediately */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

@@ -152,7 +152,7 @@ export default function SuperHeavyCatchPage() {
       {/* Background image (full bleed) using /sh_catch/hero.jpeg */}
       {/* Dimming overlay for text contrast */}
       {/* Content: back link (top), left-padded D-DIN title + descriptions (vertically centered), scroll indicator (bottom) */}
-      <header className="relative h-screen w-full overflow-hidden">
+      <header className="relative h-dvh w-full overflow-hidden">
         {/* Background layer */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

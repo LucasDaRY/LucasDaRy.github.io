@@ -191,7 +191,7 @@ export default function PortfolioBaseline() {
           Dimming layer is theme-aware (user edit): white tint in light mode, black in dark mode.
           This gives good contrast for the fixed top-right logo (black on light, white on dark).
           Contains: name (with logo at end), current occupation, slogan, and "Portfolio refresh" status. */}
-      <header className="relative h-screen w-full overflow-hidden">
+      <header className="relative h-dvh w-full overflow-hidden">
         {/* Background layer */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
