@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Phase 2 minimal professional baseline
+ *
+ * - Removed the hard-coded Arial override so we actually use the Geist Sans + Mono
+ *   variables already set up in layout.tsx (modern, excellent legibility, matches the
+ *   "simple but beautiful" direction).
+ * - Kept the file deliberately small. We add only the most basic resets and a few
+ *   portfolio-friendly utilities (container rhythm, section spacing, type scale hints).
+ * - This shell is temporary. Real typography decisions, dark/light preferences, and
+ *   component styles will be refined in Phase 5 (visual foundation) after you have seen
+ *   the content structure.
+ * - Everything here must work whether we later do a static export or run on a server.
+ */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans);
+}
+
+/* Very light base rhythm for the early shell (will evolve) */
+.container {
+  /* Phase 2: Wider on desktop to leave room for future side content (images, 3D, animations, backgrounds)
+     Mobile stays compact and comfortable. */
+  max-width: 48rem;           /* mobile / default */
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    max-width: 64rem;         /* md: ~5xl */
+  }
+  @media (min-width: 1024px) {
+    max-width: 72rem;         /* lg: comfortable for wider content later */
+  }
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2.25rem; /* 36px */
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-feature-settings: "tnum"; /* tabular numbers if we add counts later */
+}
