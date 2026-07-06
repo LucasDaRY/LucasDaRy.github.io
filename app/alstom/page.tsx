@@ -28,16 +28,16 @@ const tabbedRecommendations = [
     name: "Frédéric NECTOUX",
     role: "Tutor / Production Manager",
     quote:
-      "Lucas à fait des choses bonnes et des choses moins bonnes. ",
+      "Lucas did a few good things, and a lot of ... let's say creative things.",
     initials: "FN",
     picture: "/alstom/recommendations/fred.jpeg",
     href: "https://www.linkedin.com/in/your-tutor-linkedin",
   },
   {
     name: "Loïk TRAMOIS",
-    role: "Methods / Robotics Engineer",
+    role: "Methods / Robotics Technician",
     quote:
-      "Lucas n'a toujours pas payé le café, mais on l'aime quand même.",
+      "Ces textes sont des exemples, je les traduirais.",
     initials: "LT",
     picture: "/alstom/recommendations/loik.jpeg",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
@@ -46,9 +46,9 @@ const tabbedRecommendations = [
     name: "Emelyne LATHUILLERE",
     role: "Industrial Expert",
     quote:
-      "Lucas m'a demandé du texte aléatoire, comme si ces commentaies étaient vrais.",
-    initials: "TM",
-    href: "#",
+      "D'autres personnes avec qui j'ai pu travailler ?",
+    initials: "EL",
+    href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
 ]
 
@@ -137,8 +137,12 @@ export default function AlstomContinuousImprovementPage() {
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-            {/* Tab bar - contains full profile */}
-            <div className="flex border-b border-zinc-200 bg-zinc-50/60 text-sm dark:border-zinc-800 dark:bg-zinc-900/40">
+            {/* Tab bar - contains full profile.
+               Responsive:
+               - Desktop (md+): equal-width tabs like before (flex-1)
+               - Mobile: horizontal scroll (overflow-x-auto + min-w) so names are readable + no more crushing.
+                 overflow-y-hidden + touch-pan-x prevent unwanted vertical scroll / page scroll bleed when swiping horizontally. */}
+            <div className="flex flex-nowrap overflow-x-auto overflow-y-hidden snap-x snap-mandatory touch-pan-x border-b border-zinc-200 bg-zinc-50/60 text-sm dark:border-zinc-800 dark:bg-zinc-900/40 md:overflow-visible md:snap-none md:touch-auto">
               {tabbedRecommendations.map((rec, index) => (
                 <div
                   key={index}
@@ -148,14 +152,14 @@ export default function AlstomContinuousImprovementPage() {
                     setActiveTab(index)
                     setAutoRotate(false)
                   }}
-                  className={`flex-1 flex items-center gap-x-3 px-3 py-3.5 cursor-pointer border-b-2 transition-colors -mb-px ${
+                  className={`flex-shrink-0 md:flex-1 min-w-[168px] md:min-w-0 flex items-center gap-x-3 px-3 py-3.5 cursor-pointer border-b-2 transition-colors -mb-px ${
                     activeTab === index
                       ? "border-zinc-950 bg-white/60 dark:bg-zinc-950/60 dark:border-white"
                       : "border-transparent hover:bg-white/40 dark:hover:bg-zinc-950/30"
                   }`}
                 >
-                  {/* Avatar */}
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-white text-xs font-medium text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400">
+                  {/* Avatar — slightly smaller on mobile to leave room for text while scrolling */}
+                  <div className="flex h-8 w-8 md:h-9 md:w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-white text-xs font-medium text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400">
                     {rec.picture ? (
                       <img src={rec.picture} alt={rec.name} className="h-full w-full object-cover" />
                     ) : (
