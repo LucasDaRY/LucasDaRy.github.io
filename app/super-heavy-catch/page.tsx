@@ -241,30 +241,27 @@ export default function SuperHeavyCatchPage() {
           {/* Vertically centered hero message — left-aligned and left-padded for a more heroic, cinematic feel */}
           {/* All typography now comes from Tailwind utilities + the D-DIN variable (via @theme / root).
              Using a <div role="heading"> instead of <h1> so the global h1 rule in globals.css doesn't apply. */}
-          <div className="flex flex-1 flex-col items-start justify-center text-left pl-6 md:pl-10 lg:pl-14 max-w-6xl">
+          <div className="flex flex-1 flex-col items-start justify-center text-left px-6 md:px-10 lg:px-14 max-w-6xl">
             <div
               role="heading"
               aria-level={1}
-              className="text-6xl md:text-8xl font-bold tracking-[-0.03em] text-black/80 dark:text-white drop-shadow-lg font-[var(--font-d-din)]"
+              className="text-4xl md:text-6xl font-bold tracking-[-0.03em] text-black/80 dark:text-white drop-shadow-lg font-[var(--font-d-din)]"
             >
               Super Heavy Catch
             </div>
             <p className="mt-4 text-xl text-black/80 dark:text-white/90 font-[var(--font-d-din)]">
               Hardware-in-the-loop simulation of the booster catch maneuver
             </p>
-            <p className="mt-2 text-lg text-black/80 dark:text-white/80 font-[var(--font-d-din)]">
-              Real-time control software running against a physical mock-up mounted on a FANUC robotic arm.
-            </p>
 
           </div>
 
           {/* Scroll indicator — simple centered arrow at bottom of hero */}
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <img src="/logos/spacex.svg" alt="SpaceX" className="h-13 w-auto dark:invert" />
+          <div className="flex items-end mb-10">
+            <div className="flex flex-col items-start flex-1">
+              <img src="/logos/spacex.svg" alt="SpaceX" className="w-15 dark:invert" />
               <p className="-mt-3 text-xs opacity-70">Not affiliated</p>
             </div>
-            <div className="flex flex-col items-center text-zinc-600 dark:text-white/60">
+            <div className="text-zinc-600 dark:text-white/60">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 animate-bounce"
@@ -276,9 +273,9 @@ export default function SuperHeavyCatchPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
-            <div className="flex flex-col md:flex-row gap-8">
-              <img src="/logos/polytech.png" alt="Polytech Dijon" className="w-40 h-auto md:h-15 md:w-auto" />
-              <img src="/logos/ube.png" alt="Université Bourgogne Europe" className="w-40 h-auto md:h-15 md:w-auto" />
+            <div className="flex flex-col flex-1 items-end gap-4">
+              <img src="/logos/ube.png" alt="Université Bourgogne Europe" className="w-30 md:w-45" />
+              <img src="/logos/polytech.png" alt="Polytech Dijon" className="w-40 md:w-55" />
             </div>
           </div>
           
@@ -286,7 +283,7 @@ export default function SuperHeavyCatchPage() {
       </header>
 
       {/* Main content area with navigation */}
-      <div className="mx-auto max-w-6xl px-6 py-16 md:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl px-6 pt-16 md:px-8 lg:px-12">
         <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-x-10">
           {/* Vertical navigation pane (Table of Contents)
              - Hidden on screens smaller than `lg` (using `hidden lg:block`).
@@ -325,7 +322,7 @@ export default function SuperHeavyCatchPage() {
           </nav>
 
           {/* Main content column (keeps readable width) */}
-          <div className="min-w-0">
+          <div className="min-w-0 lg:pb-8">
             <div className="space-y-16 text-[15px] leading-relaxed">
 
           {/* Overview */}
