@@ -194,8 +194,8 @@ export default function PortfolioBaseline() {
       <header className="relative h-svh w-full overflow-hidden">
         {/* Background layer */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/sh_catch/hero.jpeg')" }}
+          className="absolute inset-0 bg-cover bg-no-repeat bg-position-[right_35%_center]"
+          style={{ backgroundImage: "url('/hero.jpg')" }}
         />
 
         {/* Dimming overlay — matches the one edited on the project page */}
