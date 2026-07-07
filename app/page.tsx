@@ -219,7 +219,6 @@ export default function PortfolioBaseline() {
                   Rino Yves
                 </p>
               </div>
-              <Logo className="mb-1 h-12 w-12 md:h-14 md:w-14 shrink-0" />
             </div>
 
             {/* Current occupation */}
