@@ -26,11 +26,6 @@ import { useState, useEffect } from 'react'
 const tabbedRecommendations = [
   {
     name: "Frédéric NECTOUX",
-<<<<<<< HEAD
-    role: "Tutor / Production Manager",
-    quote:
-      "Lucas did a few good things, and a lot of ... let's say creative things.",
-=======
     en: {
       role: "Tutor / Production Manager",
       quote: "Lucas did a few good things, and a lot of ... let's say creative things.",
@@ -39,18 +34,12 @@ const tabbedRecommendations = [
       role: "Tuteur / Production Manager",
       quote: "Lucas à pu faire quelques choses de bien, et de nombreuses erreurs intéressantes.",
     },
->>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "FN",
     picture: "/alstom/recommendations/fred.jpeg",
     href: "https://www.linkedin.com/in/your-tutor-linkedin",
   },
   {
     name: "Loïk TRAMOIS",
-<<<<<<< HEAD
-    role: "Methods / Robotics Technician",
-    quote:
-      "Ces textes sont des exemples, je les traduirais.",
-=======
     en: {
       role: "Methods / Robotics Technician",
       quote: "Example texts.",
@@ -59,18 +48,12 @@ const tabbedRecommendations = [
       role: "Méthodes / Technicien Robotique",
       quote: "Ces textes sont des exemples, je les traduirais.",
     },
->>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "LT",
     picture: "/alstom/recommendations/loik.jpeg",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
   {
     name: "Emelyne LATHUILLERE",
-<<<<<<< HEAD
-    role: "Industrial Expert",
-    quote:
-      "D'autres personnes avec qui j'ai pu travailler ?",
-=======
     en: {
       role: "Industrial Expert",
       quote: "And maybe other people ?",
@@ -79,7 +62,6 @@ const tabbedRecommendations = [
       role: "Experte Industrielle",
       quote: "D'autres personnes avec qui j'ai pu travailler ?",
     },
->>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "EL",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
