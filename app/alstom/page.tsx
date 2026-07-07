@@ -26,27 +26,60 @@ import { useState, useEffect } from 'react'
 const tabbedRecommendations = [
   {
     name: "Frédéric NECTOUX",
+<<<<<<< HEAD
     role: "Tutor / Production Manager",
     quote:
       "Lucas did a few good things, and a lot of ... let's say creative things.",
+=======
+    en: {
+      role: "Tutor / Production Manager",
+      quote: "Lucas did a few good things, and a lot of ... let's say creative things.",
+    },
+    fr: {
+      role: "Tuteur / Production Manager",
+      quote: "Lucas à pu faire quelques choses de bien, et de nombreuses erreurs intéressantes.",
+    },
+>>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "FN",
     picture: "/alstom/recommendations/fred.jpeg",
     href: "https://www.linkedin.com/in/your-tutor-linkedin",
   },
   {
     name: "Loïk TRAMOIS",
+<<<<<<< HEAD
     role: "Methods / Robotics Technician",
     quote:
       "Ces textes sont des exemples, je les traduirais.",
+=======
+    en: {
+      role: "Methods / Robotics Technician",
+      quote: "Example texts.",
+    },
+    fr: {
+      role: "Méthodes / Technicien Robotique",
+      quote: "Ces textes sont des exemples, je les traduirais.",
+    },
+>>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "LT",
     picture: "/alstom/recommendations/loik.jpeg",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
   {
     name: "Emelyne LATHUILLERE",
+<<<<<<< HEAD
     role: "Industrial Expert",
     quote:
       "D'autres personnes avec qui j'ai pu travailler ?",
+=======
+    en: {
+      role: "Industrial Expert",
+      quote: "And maybe other people ?",
+    },
+    fr: {
+      role: "Experte Industrielle",
+      quote: "D'autres personnes avec qui j'ai pu travailler ?",
+    },
+>>>>>>> e9d08e3 (Hero section + cell image + recommendations translation support)
     initials: "EL",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
@@ -72,44 +105,92 @@ export default function AlstomContinuousImprovementPage() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <div className="mx-auto max-w-3xl px-6 py-12 md:max-w-5xl md:px-8 lg:px-12">
-        {/* Back to portfolio — top position, consistent with other detail pages */}
-        <div className="mb-10">
-          <Link
-            href="/"
-            className="inline-flex items-center text-sm text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white underline dark:decoration-white/30 underline-offset-4 dark:hover:decoration-white/60 transition-colors"
-          >
-            ← Back to portfolio
-          </Link>
-        </div>
+      {/* Partial hero (3/4 viewport height).
+          Background image + two dimming approaches:
+          - Constrained left gradient panel (width-matched to content) so the dimming always covers the text
+            area no matter the window width.
+          - Bottom fade for smooth visual transition into the page background below. */}
+      <header className="relative h-[75svh] w-full overflow-hidden">
+        {/* Base image layer (full bleed) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/alstom/hero.jpg')" }}
+        />
 
-        {/* Header / Title block */}
-        <header className="mb-12">
-          <div className="uppercase tracking-[2px] text-xs text-zinc-500 dark:text-zinc-400 mb-1">
-            Internship • Continuous Improvement
+        {/* Constrained dimming layer — this is now "part of the hero content".
+            It only spans the same max-width as the text, so on any resize the gradient
+            reliably protects the titles instead of fading out too early. */}
+        <div className="absolute inset-y-0 left-0 w-full max-w-3xl md:max-w-4xl bg-gradient-to-r from-white/96 via-white/82 via-55% to-transparent dark:from-zinc-950/96 dark:via-zinc-950/72 dark:via-55% to-transparent" />
+
+        {/* Bottom fade (full width) — helps the hero image dissolve into the solid page bg below */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-white dark:to-zinc-950" />
+
+        {/* Content layer */}
+        <div className="relative z-10 flex h-full flex-col px-6">
+          {/* Back to portfolio — always near the top */}
+          <div className="pt-8">
+            <Link
+              href="/"
+              className="inline-flex items-center text-sm text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white underline dark:decoration-white/30 underline-offset-4 dark:hover:decoration-white/60 transition-colors"
+            >
+              ← Back to portfolio
+            </Link>
           </div>
-          <h1>
-            <img
-              src="/logos/alstom.svg"
-              alt="Alstom"
-              className="h-10 w-auto md:h-12 dark:invert"
-            />
-          </h1>
-          <p className="mt-2 text-xl text-zinc-600 dark:text-zinc-300">
-            Continuous Improvement Intern - DISPEN
-          </p>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
-            [March 30th 2026] — Present • [Le Creusot]
-          </p>
-        </header>
 
+          {/* Title block.
+              Desktop (md+): vertically centered like the reference.
+              Mobile: pushed to the bottom of the hero section (justify-end + extra bottom padding). */}
+          <div className="flex flex-1 flex-col md:justify-center justify-end">
+            <div className="max-w-3xl px-6 md:px-10 lg:px-14 pb-10 md:pb-0 text-left">
+              <div className="uppercase tracking-[2px] text-xs text-black/60 dark:text-white/60 mb-1.5">
+                Internship
+              </div>
+              <h1>
+                <img
+                  src="/logos/alstom.svg"
+                  alt="Alstom"
+                  className="h-11 w-auto md:h-14 dark:invert"
+                />
+              </h1>
+              <p className="mt-1.5 text-2xl text-black/80 dark:text-white/90">
+                Continuous Improvement - DISPEN
+              </p>
+              <p className="mt-1 text-sm text-black/60 dark:text-white/70">
+                March 30th 2026 — July 24th 2026 • Le Creusot
+              </p>
+            </div>
+          </div>
+
+          {/* Scroll indicator — simple centered arrow at bottom of hero */}
+          <div className="flex justify-center mb-10 text-zinc-600 dark:text-white/60">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 animate-bounce"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      {/* Main content (the former title/header block is now inside the hero above).
+          Slightly tighter top padding since the hero provides visual separation. */}
+      <div className="mx-auto max-w-3xl px-6 pt-10 pb-12 md:max-w-5xl md:px-8 lg:px-12">
         <section className="mb-16">
-          <h2>Overview</h2>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            After discovering the whole production line with the operators, I focused on issues with a robotic cell &quot;Adjustment cell&quot;, to understand and mitigate them,
-            implemented a machine performance tracker, and began reflecting on a new layout to allow masked time activities.
+          <p className="mb-4 text-zinc-600 dark:text-zinc-400">
+            DISPEN is the part of Alstom that makes train dampers, for Alstom and other brand&apos;s trains.
           </p>
-          <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+          <h2>Overview</h2>
+          <p className="mb-4 text-zinc-600 dark:text-zinc-400">
+            After discovering the whole production line with the operators, I focused on issues with the robotic &quot;Adjustment cell&quot;, to understand, measure, and mitigate them.
+            I implemented a machine performance tracker, solved technical issues with Loïk, a technician, and began reflecting on a new layout to allow masked time activities.
+            Communications with other employees (presenting the performance tracker, industrial experts), and external bodies (robotic cell&apos;s integrators, commercials).
+          </p>
+          <p className="mb-4 text-zinc-600 dark:text-zinc-400">
             Reduced issues occurrences by * % <br/>
             Implemented
             <a href="https://teeptrak.com/fr/perftrak-suivi-performance-industrielle/" className="flex flex-row inline shrink-0 p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
@@ -117,7 +198,7 @@ export default function AlstomContinuousImprovementPage() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>, with automated issues reporting and tracking of ~80 different products references.
+            </a>, with prepared automated issues reporting and tracking of ~80 different products references/types.
           </p>
         </section>
 
@@ -173,7 +254,7 @@ export default function AlstomContinuousImprovementPage() {
                       {rec.name}
                     </div>
                     <div className="text-[10px] text-zinc-500 dark:text-zinc-400 truncate">
-                      {rec.role}
+                      {rec.en.role}
                     </div>
                   </div>
 
@@ -207,7 +288,7 @@ export default function AlstomContinuousImprovementPage() {
                     className="w-full flex-shrink-0 p-6 md:p-7 min-h-[5lh]" 
                   > {/* This min-h-[Xlh] should represent the max line number of the quote */}
                     <p className="text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
-                      {rec.quote}
+                      {rec.en.quote}
                     </p>
                   </div>
                 ))}
@@ -219,6 +300,25 @@ export default function AlstomContinuousImprovementPage() {
 
         {/* Main content — placeholder sections only */}
         <div className="space-y-12 text-[15px] leading-relaxed">
+          <section>
+            <h2>Adjustment machine</h2>
+            <MasonryGrid className="gap-8">
+              <div>
+                <p>Small, public presentation of the machine</p>
+              </div>
+              <figure>
+                <img
+                  src="/alstom/adjustment_cell.jpg"
+                  alt="Wide view of the cell"
+                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
+                />
+                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                  Wide view of the cell
+                </figcaption>
+              </figure>
+            </MasonryGrid>
+          </section>
+
           <section>
             <h2>Role &amp; Responsibilities</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
