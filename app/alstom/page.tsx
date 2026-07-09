@@ -35,7 +35,7 @@ const tabbedRecommendations = [
       quote: "Lucas à pu faire quelques choses de bien, et de nombreuses erreurs intéressantes.",
     },
     initials: "FN",
-    picture: "/alstom/recommendations/fred.jpeg",
+    picture: "/alstom/recommendations/fred.jpg",
     href: "https://www.linkedin.com/in/your-tutor-linkedin",
   },
   {
