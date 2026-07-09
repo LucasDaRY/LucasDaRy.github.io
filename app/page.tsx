@@ -66,8 +66,9 @@ import {
  * Experiences & Education data for the interactive list.
  *
  * Each item keeps a very short summary for the homepage (minimal visual weight)
- * and richer details rendered only inside the Dialog. This lets you expand
- * copy without bloating the scannable list or creating dedicated routes.
+ * and richer details rendered only inside the Dialog. This keeps the list
+ * scannable while allowing extra depth without bloating the page.
+ *
  * "Tell me more" uses shadcn Tooltip (hover hint) + Dialog (full overlay card).
  * Data is colocated for now; easy to lift to lib/ later.
  */
@@ -80,18 +81,6 @@ type ExperienceItem = {
 }
 
 const experienceItems: ExperienceItem[] = [
-  {
-    id: "alstom",
-    title: "Alstom — Continuous Improvement internship",
-    period: "Current",
-    short: "Process improvement at Alstom.",
-    details: (
-      <>
-        <p>Current internship in Continuous Improvement. Focus on lean methods, process observation, data analysis and facilitating small improvements on the shop floor and support functions.</p>
-        <p className="mt-2">Working cross-functionally with production, quality and engineering teams. Using tools such as standard work, value stream mapping and problem solving frameworks.</p>
-      </>
-    ),
-  },
   {
     id: "fanuc-olympiads",
     title: "FANUC Olympiads",
@@ -275,8 +264,8 @@ export default function PortfolioBaseline() {
           <section>
             <h2>What I’m currently doing</h2>
             <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
-              <li>Alstom Internship</li>
-              <li>Website refresh using agentic coding</li>
+              <li>Alstom internship</li>
+              <li>Website/portfolio refresh</li>
               <li>Flagship project</li>
               <li>FANUC line demonstration</li>
             </ul>
@@ -305,14 +294,62 @@ export default function PortfolioBaseline() {
             </div>
           </section>
 
-
           {/* Experiences & Education — interactive list
-               Compact summaries only. Each item offers a subtle "Tell me more"
-               button. Hover shows a Tooltip hint. Click opens a shadcn Dialog
-               containing the richer details. This keeps the homepage scannable
-               while allowing arbitrary extra depth without new pages or bloat. */}
+               Compact summaries only. "Tell me more" opens a shadcn Dialog
+               with richer details. (Alstom is now promoted to its own card above.) */}
           <section>
             <h2>Experiences &amp; Education</h2>
+            {/* Alstom featured card — small, full-width, before the list.
+              Uses the hero image + constrained left dim layer + bottom fade
+              directly adapted from app/alstom/page.tsx. Compact height. */}
+            <div className="m-16 md:m-8 lg:m-12 overflow-hidden rounded-lg">
+              <div className="relative h-44 sm:h-48 md:h-52">
+                {/* Base image layer (full bleed) — /alstom/hero.jpg */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: "url('/alstom/hero.jpg')" }}
+                />
+
+                {/* Constrained dimming layer — copied/adapted from alstom hero.
+                    Keeps the heavy tint only on the left/content area. */}
+                <div className="absolute inset-y-0 left-0 w-full max-w-3xl md:max-w-4xl bg-gradient-to-r from-white/95 via-white/82 via-55% to-transparent dark:from-zinc-950/95 dark:via-zinc-950/75 dark:via-55% to-transparent" />
+
+                {/* Bottom fade for transition (lighter than full hero) */}
+                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-b from-transparent to-white/75 dark:to-zinc-950/75" />
+
+                {/* Content layer */}
+                <div className="relative z-10 flex h-full items-center px-6 md:px-8 lg:px-12">
+                  <div className="w-full max-w-3xl flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                    <div className="flex-1">
+                      <div className="uppercase tracking-[2px] text-[10px] text-black/60 dark:text-white/70 mb-0.5">
+                        Current Internship
+                      </div>
+                      <div className="text-xl font-semibold tracking-[-0.015em] text-black dark:text-white">
+                        Alstom — Continuous Improvement
+                      </div>
+                      <div className="text-sm text-black/70 dark:text-white/70 mt-0.5">
+                        March 30 — July 24 2026 • Le Creusot
+                      </div>
+                    </div>
+
+                    <div className="shrink-0">
+                      <Button
+                        asChild
+                        size="lg"
+                        variant="outline"
+                        className="group border-zinc-950 transition-all duration-200 dark:border-zinc-200 hover:bg-zinc-950 hover:text-white hover:border-zinc-950 dark:hover:bg-white dark:hover:text-zinc-950 dark:hover:border-white"
+                      >
+                        <Link href="/alstom">
+                          See internship details{" "}
+                          <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <TooltipProvider delayDuration={150}>
               <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
                 {experienceItems.map((item) => (
