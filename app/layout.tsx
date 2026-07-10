@@ -59,12 +59,12 @@ const dDin = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Lucas DAVID RY | Robotics Engineering",
-  description: "Personal portfolio of Lucas DAVID Rino Yves — Robotics Engineering student at Polytech Dijon. Flagship project: reverse-engineering the Super Heavy Booster catch maneuver (simulation + real FANUC robotic cell). FANUC Olympiads, control systems, C++, ROS, MATLAB.",
+  title: "Lucas DAVID RY | Robotics Engineer",
+  description: "Personal portfolio of Lucas DAVID Rino Yves — a Robotics Engineering student at Polytech Dijon. Flagship project: reverse-engineering the Super Heavy Booster catch maneuver (simulation + real FANUC robotic cell). FANUC Olympiads, control systems, C++, ROS, MATLAB.",
   icons: {
     // SVG favicon from the processed logo. Falls back to app/favicon.ico for old clients.
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.ico" },
     ],
   },
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lucas DAVID Rino Yves",
     creator: "@LucasDaRiYv",
-    description: "Student in Robotics, working on hardware-in-the-loop simulations, FANUC, and the Super Heavy Catch maneuver!",
+    description: "Student in Robotics, FANUC and rockets enthusiast!",
     images: ["https://www.lucas-david-ry.com/assets/img/pp_web.jpg"],
   },
 };
