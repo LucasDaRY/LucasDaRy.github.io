@@ -264,6 +264,7 @@ export default function PortfolioBaseline() {
           <h2 className="w-full self">What I’m currently doing</h2>
           <section className="flex flex-col-reverse justify-between items-center md:flex-row">
             <div>
+              <p className="visible md:hidden mt-4">And more : </p>
               <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
                 <li>Flagship project</li>
                 <li>Website/portfolio refresh</li>
