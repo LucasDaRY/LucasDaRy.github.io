@@ -261,48 +261,19 @@ export default function PortfolioBaseline() {
              Order and emphasis will be discussed at the Phase 4 checkpoint. */}
         <div className="space-y-16 text-[15px] leading-relaxed">
           {/* Current / Recent */}
-          <section>
-            <h2>What I’m currently doing</h2>
-            <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
-              <li>Alstom internship</li>
-              <li>Website/portfolio refresh</li>
-              <li>Flagship project</li>
-              <li>FANUC line demonstration</li>
-            </ul>
-          </section>
-
-          {/* Flagship (will be prominent) */}
-          <section>
-            <h2>Flagship project : Super Heavy Catch</h2>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              Reverse-engineering a rocket booster return maneuver, in simulation and in a hardware-in-the-loop test cell.<br/>
-              2.5 years long study project.<br/>
-              On this project, I&apos;m going to do application development, embedded programming, FANUC programming, control theory, CAD and 3D printing.
-            </p>
-            <div className="mt-3">
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="group border-zinc-950 transition-all duration-200 dark:border-zinc-200 hover:bg-zinc-950 hover:text-white hover:border-zinc-950 dark:hover:bg-white dark:hover:text-zinc-950 dark:hover:border-white"
-              >
-                <Link href="/super-heavy-catch">
-                  View project details{" "}
-                  <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
-                </Link>
-              </Button>
+          <h2 className="w-full self">What I’m currently doing</h2>
+          <section className="flex flex-col-reverse justify-between items-center md:flex-row">
+            <div>
+              <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
+                <li>Flagship project</li>
+                <li>Website/portfolio refresh</li>
+                <li>FANUC line demonstration</li>
+              </ul>
             </div>
-          </section>
-
-          {/* Experiences & Education — interactive list
-               Compact summaries only. "Tell me more" opens a shadcn Dialog
-               with richer details. (Alstom is now promoted to its own card above.) */}
-          <section>
-            <h2>Experiences &amp; Education</h2>
             {/* Alstom featured card — small, full-width, before the list.
               Uses the hero image + constrained left dim layer + bottom fade
               directly adapted from app/alstom/page.tsx. Compact height. */}
-            <div className="m-16 md:m-8 lg:m-12 overflow-hidden rounded-lg">
+            <div className="md:ml-8 lg:ml-12 overflow-hidden rounded-lg">
               <div className="relative h-44 sm:h-48 md:h-52">
                 {/* Base image layer (full bleed) — /alstom/hero.jpg */}
                 <div
@@ -349,7 +320,84 @@ export default function PortfolioBaseline() {
                 </div>
               </div>
             </div>
+          </section>
+        </div>
+      </div>
 
+      {/* Flagship (prominent full-width section)
+          Uses the exact same overlay treatment (constrained left dim + bottom fade)
+          as the compact Internship card above, but full viewport width and tall.
+          min-h-[50vh] kept on the section per spec; inner min-h ensures image fills vertical. */}
+      <section className="min-h-[50vh] w-full">
+        <div className="relative min-h-[50vh] overflow-hidden">
+          {/* Base image layer (full bleed) */}
+          <video
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out opacity-100`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/sh_catch/hero.jpeg"
+          >
+            <source src="/sh_catch/mockup-4_demo_cropped.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Constrained dimming layer — identical treatment to the Internship card.
+              Keeps heavy tint only over the left/content area for text contrast. */}
+          <div className="absolute inset-y-0 left-0 w-full max-w-3xl md:max-w-4xl bg-gradient-to-r from-white/95 via-white/82 via-55% to-transparent dark:from-zinc-950/95 dark:via-zinc-950/75 dark:via-55% to-transparent" />
+
+          {/* Bottom fade (same style as Internship card) */}
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-b from-transparent to-white/75 dark:to-zinc-950/75" />
+
+          {/* Content layer */}
+          <div className="relative z-10 flex min-h-[50vh] items-center px-6 md:px-8 md:max-w-5xl md:mx-auto">
+            <div className="w-full flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+              <div className="flex-1">
+                <div className="uppercase tracking-[2px] text-sm text-black/60 dark:text-white/70 mb-0.5">
+                  Flagship project
+                </div>
+                <div className="text-2xl font-semibold tracking-[-0.015em] text-black dark:text-white">
+                  Super Heavy Catch
+                </div>
+                <div className="text-sm text-black/70 dark:text-white/70 mt-0.5">
+                  2.5-year project to catch a rocket booster • Hardware-in-the-loop simulation
+                </div>
+              </div>
+
+              <div className="shrink-0">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="group border-zinc-950 transition-all duration-200 dark:border-zinc-200 hover:bg-zinc-950 hover:text-white hover:border-zinc-950 dark:hover:bg-white dark:hover:text-zinc-950 dark:hover:border-white"
+                >
+                  <Link href="/super-heavy-catch">
+                    See project details{" "}
+                    <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Content below the hero — same container rhythm as before */}
+      <div className="mx-auto max-w-3xl px-6 py-16 md:max-w-5xl md:px-8 lg:px-12">
+
+        {/* === Very light section placeholders ===
+             These exist only so the page feels like a portfolio skeleton.
+             They will be replaced with real adapted content in Phase 4.
+             Order and emphasis will be discussed at the Phase 4 checkpoint. */}
+        <div className="space-y-16 text-[15px] leading-relaxed">
+
+          {/* Experiences & Education — interactive list
+               Compact summaries only. "Tell me more" opens a shadcn Dialog
+               with richer details. (Alstom is now promoted to its own card above.) */}
+          <section>
+            <h2>Experiences &amp; Education</h2>
             <TooltipProvider delayDuration={150}>
               <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
                 {experienceItems.map((item) => (
