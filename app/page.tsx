@@ -106,7 +106,7 @@ const experienceItems: ExperienceItem[] = [
           </figcaption>
         </figure>
 
-        <p>In a team of three, we simulate a complete robotic cell while respecting cycle time, safety for workers and other specifications.</p>
+        <p>In a team of three, we simulate a complete robotic cell in Roboguide while respecting cycle time, safety for workers and other specifications.</p>
         <p>This study case was for a mobile cell, to align incoming 3x4 glass jars into a single output conveyor.</p>
         <p className="mt-2">I was responsible for building the simulation in FANUC&apos;s proprietary ROBOGUIDE software and its programming.</p>
         <ul className="mt-2 list-disc pl-5">
@@ -125,7 +125,7 @@ const experienceItems: ExperienceItem[] = [
     details: (
       <>
         <p>One-month internship at ImVia Lab. Presented the Super Heavy Catch flagship project to representatives from MIT France and Safran Tech.</p>
-        <p className="mt-2">Implemented user interfaces (GUIs) and began computational fluid dynamics work for aerodynamics studies on the project.</p>
+        <p className="mt-2">Implemented user interfaces to ProxSim (my simulation software) and began computational fluid dynamics work for aerodynamics studies on the project.</p>
         <p className="mt-2">Also developed and ran a custom Remote Dynamic Pathing algorithm on a real FANUC R-30iA Mate controller. The open-source library is planned for publication.</p>
       </>
     ),
@@ -138,20 +138,20 @@ const experienceItems: ExperienceItem[] = [
     details: (
       <>
         <p>Student in Robotics Engineering at Polytech Dijon (Le Creusot). Delegate for two years.</p>
-        <p className="mt-2">Core topics: electronics, automation/control, C++ programming, algebra and mathematical optimization.</p>
-        <p className="mt-2">TOEIC 970/990 (Feb 2025) also achieved during studies.</p>
+        <p className="mt-2">Core topics: electronics, automation/control theory, C++ programming, algebra and mathematical optimization.</p>
+        <p className="mt-2">TOEIC 970/990 (Feb 2025)</p>
       </>
     ),
   },
   {
     id: "prepa",
-    title: "Prépa MP2I/MPI",
+    title: "Preparatory class for engineering schools MP2I/MPI",
     period: "Gay-Lussac, Limoges",
-    short: "Intensive prep: Maths, Physics, Computer Science, Philosophy.",
+    short: "Intensive program : Maths, Physics, Computer Science",
     details: (
       <>
         <p>Two-year intensive preparatory class for engineering school national exams (MP2I then MPI track).</p>
-        <p className="mt-2">Heavy schedule of fundamental Maths, Physics, theoretical Computer Science, plus English and Philosophy. Multiple graded assessments every week.</p>
+        <p className="mt-2">Heavy schedule of fundamental Maths, Physics, theoretical Computer Science, plus English and Philosophy. Assessments every Saturday, Weekly oral exams.</p>
       </>
     ),
   },
@@ -402,28 +402,22 @@ export default function PortfolioBaseline() {
               <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
                 {experienceItems.map((item) => (
                   <li key={item.id} className="py-0.5">
-                    <span
-                      onClick={() => openDetails(item)}
-                      className="cursor-pointer font-medium text-zinc-700 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
-                    >
-                      {item.title}
-                    </span>
-                    {item.period && (
-                      <span className="ml-1.5 text-xs opacity-60">• {item.period}</span>
-                    )}
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
                           onClick={() => openDetails(item)}
-                          className="ml-2 text-[10px] font-mono uppercase tracking-[1px] text-zinc-500 underline decoration-dotted underline-offset-2 transition hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
+                          className="cursor-pointer font-medium text-zinc-700 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
                         >
-                          Tell me more
+                          {item.title}
                         </button>
                       </TooltipTrigger>
                       <TooltipContent sideOffset={6} className="text-xs">
                         Tell me more
                       </TooltipContent>
                     </Tooltip>
+                    {item.period && (
+                      <span className="ml-1.5 text-xs opacity-60">• {item.period}</span>
+                    )}
                     <div className="pl-1 text-xs text-zinc-500 dark:text-zinc-500">{item.short}</div>
                   </li>
                 ))}
