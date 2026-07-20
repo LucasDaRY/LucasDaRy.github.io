@@ -28,11 +28,11 @@ const tabbedRecommendations = [
     name: "Frédéric NECTOUX",
     en: {
       role: "Tutor / Production Manager",
-      quote: "Lucas did a few good things, and a lot of ... let's say creative things.",
+      quote: "Le ferroviaire est une industrie qui nécessite précision et confiance, d'autant plus que notre production d'amortisseurs sont principalement dédiés à la sécurité ferroviaire. Lucas nous a bien aidé sur notre cellule de réglage pour les problèmes techniques, et a étudié le poste detravail dans son ensemble pour une montée en cadence. Il n'hésitait pas à améliorer la machine, mais certains changements ont causé des arrêts de production, rapidement résolus certes, mais évitables. Je suis content d'avoir eu Lucas comme stagiaire.",
     },
     fr: {
       role: "Tuteur / Production Manager",
-      quote: "Lucas à pu faire quelques choses de bien, et de nombreuses erreurs intéressantes.",
+      quote: "Le ferroviaire est une industrie qui nécessite précision et confiance, d'autant plus que notre production d'amortisseurs sont principalement dédiés à la sécurité ferroviaire. Lucas nous a bien aidé sur notre cellule de réglage pour les problèmes techniques, et a étudié le poste detravail dans son ensemble pour une montée en cadence. Il n'hésitait pas à améliorer la machine, mais certains changements ont causé des arrêts de production, rapidement résolus certes, mais évitables. Je suis content d'avoir eu Lucas comme stagiaire.",
     },
     initials: "FN",
     picture: "/alstom/recommendations/fred.jpg",
@@ -50,19 +50,6 @@ const tabbedRecommendations = [
     },
     initials: "LT",
     picture: "/alstom/recommendations/loik.jpeg",
-    href: "https://www.linkedin.com/in/collaborator-linkedin",
-  },
-  {
-    name: "Emelyne LATHUILLERE",
-    en: {
-      role: "Industrial Expert",
-      quote: "And maybe other people ?",
-    },
-    fr: {
-      role: "Experte Industrielle",
-      quote: "D'autres personnes avec qui j'ai pu travailler ?",
-    },
-    initials: "EL",
     href: "https://www.linkedin.com/in/collaborator-linkedin",
   },
 ]
@@ -168,19 +155,20 @@ export default function AlstomContinuousImprovementPage() {
           </p>
           <h2>Overview</h2>
           <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-            After discovering the whole production line with the operators, I focused on issues with the robotic &quot;Adjustment cell&quot;, to understand, measure, and mitigate them.
+            After discovering the whole production line with the operators, I focused on the robotic &quot;Adjustment cell&quot;, to understand, measure, and mitigate its technical issues.
             I implemented a machine performance tracker, solved technical issues with Loïk, a technician, and began reflecting on a new layout to allow masked time activities.
-            Communications with other employees (presenting the performance tracker, industrial experts), and external bodies (robotic cell&apos;s integrators, commercials).
+            Communications with employees (presenting the performance tracker, industrial experts), and vendors (robotic cell&apos;s integrators, commercials).
           </p>
           <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-            Reduced issues occurrences by * % <br/>
+            <span className="font-bold">Reduced issues occurrences by 62 % between Week 13 and Week 25</span><br/>
             Implemented
             <a href="https://teeptrak.com/fr/perftrak-suivi-performance-industrielle/" className="flex flex-row inline shrink-0 p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
               TeepTrak
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>, with prepared automated issues reporting and tracking of ~80 different products references/types.
+            </a>, with prepared automated issues reporting and tracking of ~80 different products references/types in Week 25. <br/>
+            Made abacuses of &quot;allocated time&quot; for the robots production, helping the production planning.
           </p>
         </section>
 
@@ -285,17 +273,18 @@ export default function AlstomContinuousImprovementPage() {
           <section>
             <h2>Adjustment machine</h2>
             <MasonryGrid className="gap-8">
-              <div>
-                <p>Small, public presentation of the machine</p>
+              <div className="text-zinc-600 dark:text-zinc-400">
+                <p>This machine has two FANUC robots, and is tasked to screw a valve-holer that compress a spring at a given preload on the piston/embase.</p>
+                <p>It takes the pre-assembled piston, verify the spring&apos;s stiffness, and screws the valve holder.</p>
               </div>
               <figure>
                 <img
-                  src="/alstom/adjustment_cell.jpg"
-                  alt="Wide view of the cell"
+                  src="/alstom/dampers_stand.jpg"
+                  alt="Picture of a display stand, with me and a machine operator 'Bélo'"
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Wide view of the cell
+                  Picture of a display stand, with me and a machine operator &quot;Bélo&quot;
                 </figcaption>
               </figure>
             </MasonryGrid>
@@ -304,79 +293,29 @@ export default function AlstomContinuousImprovementPage() {
           <section>
             <h2>Role &amp; Responsibilities</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              Placeholder for day-to-day activities: process observation and mapping, data collection
-              and analysis, facilitation of Kaizen workshops, standard work development, etc.
-            </p>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Another paragraph for cross-functional collaboration notes (production, quality,
-              engineering, supply chain) or any specific projects ownership.
+              Observed and studied technical issues right when they happened, to go from reported symptoms to issues&apos; origins.
             </p>
           </section>
 
           <section>
             <h2>Key Projects &amp; Contributions</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              Placeholder area for 1–3 concrete improvement initiatives. Include what was measured,
-              what changed, and any quantified impact (even directional for now).
+              I strongly collaborate with Loïk to adjust taught positions of saved recipes, to test new changes.
+              Made instructions paper to keep my solutions maintainable.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              This section is intentionally left open so you can later add before/after descriptions,
-              simple diagrams, or links to supporting material.
+              I implemented TeepTrak, so the Production Unit Manager knows the performance of the machine (TRS, TRG), and has a proper tracking of technical issues. Issues are reported by the operator for now, but automatic reports are almost functional (waiting for more PLC outputs). <br/>
+              Made a new vision process so that the screwer is initially aligned with the valve-holder.<br/>
+              Improved a solution have much less cross-threading issues.
             </p>
-          </section>
-
-          <section>
-            <h2>Photos &amp; Documentation</h2>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              Placeholder for on-site photos: shop floor observations, Kaizen workshops, VSMs,
-              standard work sheets, Gemba walks, and team activities. Drop real images into
-              <code className="font-mono text-[13px]"> public/alstom/</code>.
-            </p>
-
-            {/* MasonryGrid gallery migrated directly from the super-heavy-catch (and experiments)
-               page pattern. Responsive 1-col / 2-col round-robin layout. Images use the exact
-               same figure + border + caption treatment for visual consistency. */}
-            <MasonryGrid className="mt-6 gap-8">
-              <figure>
-                <img
-                  src="/alstom/placeholder1.jpg"
-                  alt="Placeholder — replace with a real internship photo (e.g. shop floor)"
-                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
-                />
-                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Placeholder caption — e.g. production line or work cell
-                </figcaption>
-              </figure>
-
-              <figure>
-                <img
-                  src="/alstom/placeholder2.jpg"
-                  alt="Placeholder — replace with a real internship photo (e.g. Kaizen board)"
-                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
-                />
-                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Placeholder caption — e.g. improvement event or data review
-                </figcaption>
-              </figure>
-
-              <figure>
-                <img
-                  src="/alstom/placeholder3.jpg"
-                  alt="Placeholder — replace with a real internship photo (e.g. before/after)"
-                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
-                />
-                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Placeholder caption — e.g. standard work or metric board
-                </figcaption>
-              </figure>
-            </MasonryGrid>
           </section>
 
           <section>
             <h2>Tools, Methods &amp; Skills</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              FANUC&apos;s roboguide for offline prototyping programs.
-              TIA Portal for PLC monitoring / programming 
+              FANUC&apos;s roboguide for offline prototyping programs<br/>
+              TIA Portal for PLC monitoring / programming<br/>
+              Excel for issues occurence analysis
             </p>
           </section>
 
@@ -384,8 +323,8 @@ export default function AlstomContinuousImprovementPage() {
             <h2>Takeaways &amp; Next Steps</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
               This internship was full of work, and needed me in multiple domains : multiple technical domains
-              (FANUC Robotics, Siemens PLCs, mechanical issues), communications (inside when presenting to colleagues, outside when
-              quoting for interventions/implementing a new module).
+              (FANUC Robotics, Siemens PLCs, mechanical issues), communications (local when presenting to colleagues, outside when
+              quoting for interventions with vendors/configuring a new module).
             </p>
             <p className="text-zinc-600 dark:text-zinc-400">
               I learned some life lessons, working with multiple people, finding the person I needed that was on site for each steps (FANUCs, TeepTrak, Maintenance).
