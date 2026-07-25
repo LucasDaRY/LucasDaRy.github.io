@@ -284,7 +284,7 @@ export default function AlstomContinuousImprovementPage() {
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Picture of a display stand, with me and a machine operator &quot;Bélo&quot;
+                  Picture of a display stand, with me and a machine operator &quot;Bello&quot;
                 </figcaption>
               </figure>
             </MasonryGrid>
