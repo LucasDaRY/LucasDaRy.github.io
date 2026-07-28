@@ -426,12 +426,20 @@ export default function PortfolioBaseline() {
             </TooltipProvider>
           </section>
 
-          <section>
-            <h2>Skills &amp; Programming</h2>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              C++ (sockets, ImGui), Web interfaces, ROS2, MATLAB/Simulink.
-            </p>
-          </section>
+          <div className="space-y-16 md:grid md:grid-cols-2 md:gap-10">
+            <section>
+              <h2>Skills &amp; Programming</h2>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                C++ (sockets, ImGui), Web interfaces, ROS2, MATLAB/Simulink.
+              </p>
+            </section>
+            <section>
+              <h2>Local involvement</h2>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Village des sciences (x2)
+              </p>
+            </section>
+          </div>
 
           {/* Resume section — opens English CV in a new tab (public/Resume/CV_English.pdf).
               Plain <a> (not Next <Link>) because this is a static asset, not a route. */}
