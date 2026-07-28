@@ -38,20 +38,6 @@ const tabbedRecommendations = [
     picture: "/alstom/recommendations/fred.jpg",
     href: "https://www.linkedin.com/in/your-tutor-linkedin",
   },
-  {
-    name: "Loïk TRAMOIS",
-    en: {
-      role: "Methods / Robotics Technician",
-      quote: "Example texts.",
-    },
-    fr: {
-      role: "Méthodes / Technicien Robotique",
-      quote: "Ces textes sont des exemples, je les traduirais.",
-    },
-    initials: "LT",
-    picture: "/alstom/recommendations/loik.jpeg",
-    href: "https://www.linkedin.com/in/collaborator-linkedin",
-  },
 ]
 
 export default function AlstomContinuousImprovementPage() {
