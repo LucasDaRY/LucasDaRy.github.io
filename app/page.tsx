@@ -486,102 +486,6 @@ export default function PortfolioBaseline() {
           </DialogContent>
         </Dialog>
 
-        {/* 
-          TESTING ZONE — shadcn/ui experiments only (Phase 3 sandbox)
-
-          This entire section is temporary and isolated.
-          - All shadcn components live here ONLY for now.
-          - The main portfolio content above is 100% unchanged.
-          - This will be removed or relocated before launch.
-        */}
-        <div className="mt-16 border-t-2 border-dashed border-yellow-400 pt-8 dark:border-yellow-600">
-          <div className="mb-6 rounded-lg border border-yellow-300 bg-yellow-50 p-4 text-sm dark:border-yellow-800 dark:bg-yellow-950/40">
-            <strong className="text-yellow-800 dark:text-yellow-200">TESTING ZONE — shadcn experiments</strong>
-            <p className="mt-1 text-yellow-700 dark:text-yellow-300">
-              Temporary sandbox for shadcn/ui components. Nothing here affects the real site above.
-            </p>
-            <p className="mt-1 text-yellow-700 dark:text-yellow-300">
-              This section will be deleted before the final portfolio.
-            </p>
-          </div>
-
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-yellow-700 dark:text-yellow-400">
-            shadcn Component Examples
-          </h2>
-
-          <div className="space-y-8">
-            {/* Card + Button example */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Card Example</CardTitle>
-                <CardDescription>
-                  This is a shadcn Card used inside the testing zone only.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  Cards are great for grouping content. Buttons below are also shadcn.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Button onClick={() => alert("Default button clicked (testing zone only)")}>
-                    Default Button
-                  </Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="secondary" size="sm">Secondary Small</Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Demo card (previously the "bilingual" test card; now plain English) */}
-            <div>
-              <h3 className="mb-3 text-base font-medium">Flagship Project Demo</h3>
-              <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
-                Reverse-engineering the Super Heavy Booster catch maneuver (simulation + real FANUC cell).
-              </p>
-
-              <Card className="border-yellow-200 dark:border-yellow-800">
-                <CardHeader>
-                  <CardTitle>Flagship Project Demo</CardTitle>
-                  <CardDescription>
-                    Reverse-engineering the Super Heavy Booster catch maneuver (simulation + real FANUC cell).
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <p className="text-xs text-yellow-700 dark:text-yellow-400">
-                    This text would eventually come from the real bilingual data in Phase 4.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* TEMPORARY monochrome logos grid (Alstom, FANUC, Polytech Dijon, ImVia Lab) */}
-            <div>
-              <h3 className="mb-3 text-base font-medium">Temporary logos grid (monochrome)</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 rounded-lg border border-yellow-200 bg-yellow-50/50 p-6 dark:border-yellow-800 dark:bg-yellow-950/20">
-                <div className="flex flex-col items-center justify-between gap-1.5">
-                  <img src="/logos/alstom.svg" alt="Alstom" className="h-16 w-auto dark:invert" />
-                  <span className="text-yellow-700 dark:text-yellow-400">Alstom</span>
-                </div>
-                <div className="flex flex-col items-center justify-between gap-1.5">
-                  <img src="/logos/fanuc.svg" alt="FANUC" className="h-8 w-auto dark:invert" />
-                  <span className="text-yellow-700 dark:text-yellow-400">FANUC</span>
-                </div>
-                <div className="flex flex-col items-center justify-between gap-1.5">
-                  <img src="/logos/ube.svg" alt="Polytech Dijon" className="h-20 w-auto dark:invert" />
-                  <span className="text-yellow-700 dark:text-yellow-400">Polytech Dijon</span>
-                </div>
-                <div className="flex flex-col items-center justify-between gap-1.5">
-                  <img src="/logos/imvia.png" alt="ImVia Lab" className="h-12 w-auto dark:invert grayscale" />
-                  <span className="text-yellow-700 dark:text-yellow-400">ImVia Lab</span>
-                </div>
-              </div>
-              <p className="mt-2 text-[10px] text-yellow-600 dark:text-yellow-500">
-                Fetched to /public/logos. Temporary placement only — inside testing zone for easy review/removal.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* === Minimal footer / contacts (will be refined later) === */}
         <footer className="mt-20 border-t border-zinc-100 pt-8 text-sm text-zinc-500 dark:border-zinc-900 dark:text-zinc-400">
           <div className="flex flex-wrap gap-x-4 gap-y-1">
@@ -590,9 +494,6 @@ export default function PortfolioBaseline() {
             </a>
             <a href="mailto:lucas@lucas-david-ry.com" className="hover:text-zinc-700 dark:hover:text-zinc-200">lucas@lucas-david-ry.com</a>
           </div>
-          <p className="mt-2 text-[10px] opacity-60">
-            This is the Phase 2 clean baseline shell. Real bilingual content, proper sections, shadcn components, language toggle, and 3D hero come in later phases. The structure is designed so it can be deployed as a static site (GitHub Pages) or as a small server on your HomeLab with only minor later config.
-          </p>
 
           {/* Small credit note — "this website was made with you" + Grok logo icon (provided by you).
               Logo sits at the far right using justify-between. */}

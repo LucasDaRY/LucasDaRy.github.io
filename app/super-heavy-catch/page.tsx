@@ -837,9 +837,6 @@ void control_loop() {
                 <a href="https://x.com/LucasDaRiYv" className="hover:text-zinc-700 dark:hover:text-zinc-200">𝕏 @LucasDaRiYv</a>
                 <a href="mailto:lucas@lucas-david-ry.com" className="hover:text-zinc-700 dark:hover:text-zinc-200">lucas@lucas-david-ry.com</a>
               </div>
-              <p className="mt-3 text-[10px] opacity-60">
-                Flagship project page. Navigation patterns (desktop sidebar + mobile Chapter collapsibles) and technical details are experimental.
-              </p>
             </footer>
           </div> {/* end content column */}
         </div> {/* end grid */}
