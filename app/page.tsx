@@ -85,7 +85,7 @@ const experienceItems: ExperienceItem[] = [
     id: "fanuc-olympiads",
     title: "FANUC Olympiads",
     period: "Sept. 2025 - Jan. 2026",
-    short: "ROBOGUIDE simulation for robotic cell.",
+    short: "ROBOGUIDE simulation for robotic cell",
     details: (
       <>
         <figure className="mt-4">
@@ -121,7 +121,7 @@ const experienceItems: ExperienceItem[] = [
     id: "imvia",
     title: "ImVia Lab internship",
     period: "July 2025",
-    short: "Flagship project : GUI + CFD + FANUC dynamic pathing from scratch.",
+    short: "Flagship project : GUI + CFD + FANUC dynamic pathing from scratch",
     details: (
       <>
         <p>One-month internship at ImVia Lab. Presented the Super Heavy Catch flagship project to representatives from MIT France and Safran Tech.</p>
@@ -134,7 +134,7 @@ const experienceItems: ExperienceItem[] = [
     id: "polytech",
     title: "Polytech Dijon — Robotics Engineering",
     period: "Ongoing",
-    short: "Delegate • Mechatronics, automation, C++, math optimization.",
+    short: "Delegate • Embedded controllers, industrial robotics, automation, C++, math",
     details: (
       <>
         <p>Student in Robotics Engineering at Polytech Dijon (Le Creusot). Delegate for two years.</p>
