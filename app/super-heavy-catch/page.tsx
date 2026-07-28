@@ -305,7 +305,7 @@ export default function SuperHeavyCatchPage() {
             <div className="mb-2 text-[10px] font-medium uppercase tracking-[0.5px] text-zinc-500 dark:text-zinc-500">
               On this page
             </div>
-            <ul className="space-y-px text-sm">
+            <ul className="space-y-px text-sm border-b pb-4 border-zinc-200 dark:border-zinc-800">
               <li><a href="#overview" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Overview</a></li>
               <li><a href="#simulation-and-control-software" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Simulation &amp; Control Software : ProxSim</a></li>
               <li><a href="#hardware-in-the-loop-architecture" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Hardware-in-the-Loop Architecture</a></li>
@@ -316,9 +316,6 @@ export default function SuperHeavyCatchPage() {
               <li><a href="#control-approach" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Control Approach</a></li>
               <li><a href="#current-status-and-next-steps" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Current Status &amp; Next Steps</a></li>
             </ul>
-            <div className="mt-4 pt-4 border-t flex flex-col gap-8 border-zinc-200 dark:border-zinc-800">
-              <p className="text-xs text-zinc-500  dark:text-zinc-500">Click “Technical details” in each section for opt-in depth.</p>
-            </div>
           </nav>
 
           {/* Main content column (keeps readable width) */}
