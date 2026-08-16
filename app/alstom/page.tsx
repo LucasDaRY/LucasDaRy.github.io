@@ -28,7 +28,7 @@ const tabbedRecommendations = [
     name: "Frédéric NECTOUX",
     en: {
       role: "Tutor / Production Manager",
-      quote: "Le ferroviaire est une industrie qui nécessite précision et confiance, d'autant plus que notre production d'amortisseurs sont principalement dédiés à la sécurité ferroviaire. Lucas nous a bien aidé sur notre cellule de réglage pour les problèmes techniques, et a étudié le poste detravail dans son ensemble pour une montée en cadence. Il n'hésitait pas à améliorer la machine, mais certains changements ont causé des arrêts de production, rapidement résolus certes, mais évitables. Je suis content d'avoir eu Lucas comme stagiaire.",
+      quote: "The railway industry requires precision and trust, all the more so because our damper production is mainly dedicated to railway safety. Lucas helped us a great deal on our adjustment cell with technical issues, and studied the workstation as a whole to support a ramp-up in throughput. He did not hesitate to improve the machine, although some changes caused production stops — quickly resolved, admittedly, but avoidable. I am glad to have had Lucas as an intern.",
     },
     fr: {
       role: "Tuteur / Production Manager",
@@ -36,7 +36,7 @@ const tabbedRecommendations = [
     },
     initials: "FN",
     picture: "/alstom/recommendations/fred.jpg",
-    href: "https://www.linkedin.com/in/your-tutor-linkedin",
+    href: "https://www.linkedin.com/in/fr%C3%A9d%C3%A9ric-nectoux-66a102170/",
   },
 ]
 
@@ -137,24 +137,25 @@ export default function AlstomContinuousImprovementPage() {
       <div className="mx-auto max-w-3xl px-6 pt-10 pb-12 md:max-w-5xl md:px-8 lg:px-12">
         <section className="mb-16">
           <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-            DISPEN is the part of Alstom that makes train dampers, for Alstom and other brand&apos;s trains.
+            DISPEN is the part of Alstom that makes train dampers, for Alstom and for other brands&apos; trains.
           </p>
           <h2>Overview</h2>
           <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-            After discovering the whole production line with the operators, I focused on the robotic &quot;Adjustment cell&quot;, to understand, measure, and mitigate its technical issues.
-            I implemented a machine performance tracker, solved technical issues with Loïk, a technician, and began reflecting on a new layout to allow masked time activities.
-            Communications with employees (presenting the performance tracker, industrial experts), and vendors (robotic cell&apos;s integrators, commercials).
+            After discovering the whole production line with the operators, I focused on the robotic &quot;Adjustment cell&quot; to understand, measure, and mitigate its technical issues.
+            I implemented a machine performance tracker, solved technical issues with Loïk, a technician, and began working on a new layout to allow masked-time activities.
+            I also handled communications with employees (presenting the performance tracker, industrial experts) and vendors (the robotic cell&apos;s integrators and sales contacts).
           </p>
           <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-            <span className="font-bold">Reduced issues occurrences by 62 % between Week 13 and Week 25</span><br/>
-            Implemented
-            <a href="https://teeptrak.com/fr/perftrak-suivi-performance-industrielle/" className="flex flex-row inline shrink-0 p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
+            <span className="font-bold">Reduced issue occurrences by 62% between Week 13 and Week 25.</span><br/>
+            Implemented{" "}
+            <a href="https://teeptrak.com/fr/perftrak-suivi-performance-industrielle/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
               TeepTrak
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>, with prepared automated issues reporting and tracking of ~80 different products references/types in Week 25. <br/>
-            Made abacuses of &quot;allocated time&quot; for the robots production, helping the production planning.
+            </a>
+            , with prepared automated issue reporting and tracking of about 80 different product references/types in Week 25. <br/>
+            Built allocated-time charts (abacuses) for robot production, which helped production planning.
           </p>
         </section>
 
@@ -260,10 +261,10 @@ export default function AlstomContinuousImprovementPage() {
             <h2>Adjustment machine</h2>
             <MasonryGrid className="gap-8">
               <div className="text-zinc-600 dark:text-zinc-400">
-                <p>This machine has two FANUC robots, and is tasked to screw a valve-holer that compress a spring at a given preload on the piston/embase.</p>
-                <p>It takes the pre-assembled piston, verify the spring&apos;s stiffness, and screws the valve holder.</p>
-                <p>The pieces are tiny and the assembly was not originally thought for an automated production in the first place. I participated to reduce the production stops by 62% by : </p>
-                <ol>
+                <p>This machine has two FANUC robots, and is tasked with screwing a valve holder that compresses a spring to a given preload on the piston/base.</p>
+                <p>It takes the pre-assembled piston, verifies the spring&apos;s stiffness, and screws the valve holder.</p>
+                <p>The parts are tiny, and the assembly was not originally designed for automated production. I helped reduce production stops by 62% by:</p>
+                <ol className="list-decimal pl-5">
                   <li>Realigning taught positions</li>
                   <li>Editing the screwing processes</li>
                   <li>Implementing a new vision program</li>
@@ -285,42 +286,42 @@ export default function AlstomContinuousImprovementPage() {
           <section>
             <h2>Role &amp; Responsibilities</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              Observed and studied technical issues right when they happened, to go from reported symptoms to issues&apos; origins.
+              Observed and studied technical issues as they happened, going from reported symptoms to root causes.
             </p>
           </section>
 
           <section>
             <h2>Key Projects &amp; Contributions</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              I strongly collaborate with Loïk to adjust taught positions of saved recipes, to test new changes.
-              Made instructions paper to keep my solutions maintainable.
+              I collaborated closely with Loïk to adjust taught positions of saved recipes and to test new changes.
+              I wrote instruction sheets so the solutions would stay maintainable.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              I implemented TeepTrak, so the Production Unit Manager knows the performance of the machine (TRS, TRG), and has a proper tracking of technical issues. Issues are reported by the operator for now, but automatic reports are almost functional (waiting for more PLC outputs). <br/>
-              Made a new vision process so that the screwer is initially aligned with the valve-holder.<br/>
-              Improved a solution have much less cross-threading issues.
+              I implemented TeepTrak so the production unit manager can see machine performance (TRS, TRG) and has proper tracking of technical issues. Issues are reported by the operator for now, but automatic reports are almost functional (waiting for more PLC outputs). <br/>
+              I made a new vision process so the screwdriver starts aligned with the valve holder.<br/>
+              I improved a solution to greatly reduce cross-threading issues.
             </p>
           </section>
 
           <section>
             <h2>Tools, Methods &amp; Skills</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              FANUC&apos;s roboguide for offline prototyping programs<br/>
+              FANUC ROBOGUIDE for offline program prototyping<br/>
               TIA Portal for PLC monitoring / programming<br/>
-              Excel for issues occurence analysis
+              Excel for issue-occurrence analysis
             </p>
           </section>
 
           <section>
             <h2>Takeaways &amp; Next Steps</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
-              This internship was full of work, and needed me in multiple domains : multiple technical domains
-              (FANUC Robotics, Siemens PLCs, mechanical issues), communications (local when presenting to colleagues, outside when
-              quoting for interventions with vendors/configuring a new module).
+              This internship was full of work and required me in several domains: technical work
+              (FANUC robotics, Siemens PLCs, mechanical issues) and communications (on site when presenting to colleagues, and externally when
+              requesting vendor interventions or configuring a new module).
             </p>
             <p className="text-zinc-600 dark:text-zinc-400">
-              I learned some life lessons, working with multiple people, finding the person I needed that was on site for each steps (FANUCs, TeepTrak, Maintenance).
-              I also found that my skills were needed for more than an internship, I&apos;m sure I can come back later and have some important work to do.
+              I learned some life lessons: working with many people, and finding the person on site I needed at each step (FANUC, TeepTrak, maintenance).
+              I also found that my skills were needed beyond an internship; I am sure I can come back later and have important work to do.
             </p>
           </section>
         </div>

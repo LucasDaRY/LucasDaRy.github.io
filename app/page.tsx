@@ -26,9 +26,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { Logo } from "@/components/Logo"
 import { useState, type ReactNode } from "react"
 import {
   Dialog,
@@ -37,12 +35,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 /**
  * Reverted from the react-i18next / custom I18nProvider + LanguageSwitcher experiment.
@@ -69,7 +61,7 @@ import {
  * and richer details rendered only inside the Dialog. This keeps the list
  * scannable while allowing extra depth without bloating the page.
  *
- * "Tell me more" uses shadcn Tooltip (hover hint) + Dialog (full overlay card).
+ * Each row is a full-width button (works on touch) that opens a Dialog.
  * Data is colocated for now; easy to lift to lib/ later.
  */
 type ExperienceItem = {
@@ -106,13 +98,13 @@ const experienceItems: ExperienceItem[] = [
           </figcaption>
         </figure>
 
-        <p>In a team of three, we simulate a complete robotic cell in Roboguide while respecting cycle time, safety for workers and other specifications.</p>
-        <p>This study case was for a mobile cell, to align incoming 3x4 glass jars into a single output conveyor.</p>
-        <p className="mt-2">I was responsible for building the simulation in FANUC&apos;s proprietary ROBOGUIDE software and its programming.</p>
+        <p>In a team of three, we simulated a complete robotic cell in ROBOGUIDE while meeting cycle time, worker safety, and other specifications.</p>
+        <p>This case study was a mobile cell that aligns incoming 3×4 glass jars onto a single output conveyor.</p>
+        <p className="mt-2">I was responsible for building the simulation in FANUC&apos;s proprietary ROBOGUIDE software and for programming it.</p>
+        <p className="mt-2">I was in a group with:</p>
         <ul className="mt-2 list-disc pl-5">
-          I was in group with 
-          <li>Clément LAMOULLER : Main designer of the cell and the vacuum End Of Arm Tool</li>
-          <li>Rassil MAHJOUB : Documentation, Project Manager</li>
+          <li>Clément LAMOULLER — main designer of the cell and the vacuum end-of-arm tool</li>
+          <li>Rassil MAHJOUB — documentation and project manager</li>
         </ul>
       </>
     ),
@@ -121,12 +113,12 @@ const experienceItems: ExperienceItem[] = [
     id: "imvia",
     title: "ImVia Lab internship",
     period: "July 2025",
-    short: "Flagship project : GUI + CFD + FANUC dynamic pathing from scratch",
+    short: "Flagship project: GUI, CFD, and FANUC dynamic pathing from scratch",
     details: (
       <>
-        <p>One-month internship at ImVia Lab. Presented the Super Heavy Catch flagship project to representatives from MIT France and Safran Tech.</p>
-        <p className="mt-2">Implemented user interfaces to ProxSim (my simulation software) and began computational fluid dynamics work for aerodynamics studies on the project.</p>
-        <p className="mt-2">Also developed and ran a custom Remote Dynamic Pathing algorithm on a real FANUC R-30iA Mate controller. The open-source library is planned for publication.</p>
+        <p>One-month internship at ImVia Lab. I presented the Super Heavy Catch flagship project to representatives from MIT France and Safran Tech.</p>
+        <p className="mt-2">I implemented user interfaces for ProxSim (my simulation software) and started computational fluid dynamics work for aerodynamics studies on the project.</p>
+        <p className="mt-2">I also developed and ran a custom remote dynamic pathing algorithm on a real FANUC R-30iA Mate controller. The open-source library is planned for publication.</p>
       </>
     ),
   },
@@ -137,9 +129,9 @@ const experienceItems: ExperienceItem[] = [
     short: "Delegate • Embedded controllers, industrial robotics, automation, C++, math",
     details: (
       <>
-        <p>Student in Robotics Engineering at Polytech Dijon (Le Creusot). Delegate for two years.</p>
-        <p className="mt-2">Core topics: electronics, automation/control theory, C++ programming, algebra and mathematical optimization.</p>
-        <p className="mt-2">TOEIC 970/990 (Feb 2025)</p>
+        <p>Student in Robotics Engineering at Polytech Dijon (Le Creusot). Class delegate for two years.</p>
+        <p className="mt-2">Core topics: electronics, automation and control theory, C++ programming, algebra, and mathematical optimization.</p>
+        <p className="mt-2">TOEIC 970/990 (February 2025).</p>
       </>
     ),
   },
@@ -147,11 +139,11 @@ const experienceItems: ExperienceItem[] = [
     id: "prepa",
     title: "Preparatory class for engineering schools MP2I/MPI",
     period: "Gay-Lussac, Limoges",
-    short: "Intensive program : Maths, Physics, Computer Science",
+    short: "Intensive program: maths, physics, computer science",
     details: (
       <>
-        <p>Two-year intensive preparatory class for engineering school national exams (MP2I then MPI track).</p>
-        <p className="mt-2">Heavy schedule of fundamental Maths, Physics, theoretical Computer Science, plus English and Philosophy. Assessments every Saturday, Weekly oral exams.</p>
+        <p>French Baccalaureate with honors, then a two-year intensive preparatory class for engineering-school national exams (MP2I, then MPI track).</p>
+        <p className="mt-2">Heavy schedule of fundamental maths, physics, and theoretical computer science, plus English and philosophy. Assessments every Saturday, and weekly oral exams.</p>
       </>
     ),
   },
@@ -205,7 +197,10 @@ export default function PortfolioBaseline() {
                   Lucas DAVID
                 </div>
                 <p className="text-3xl md:text-4xl font-semibold tracking-tighter text-zinc-800 dark:text-white/95 font-[var(--font-d-din)]">
-                  Rino Yves
+                  Rino Yves{" "}
+                  <span className="ml-1 text-lg md:text-xl font-normal tracking-[0.28em] text-zinc-500 dark:text-white/50">
+                    RY
+                  </span>
                 </p>
               </div>
             </div>
@@ -261,20 +256,10 @@ export default function PortfolioBaseline() {
              Order and emphasis will be discussed at the Phase 4 checkpoint. */}
         <div className="space-y-16 text-[15px] leading-relaxed">
           {/* Current / Recent */}
-          <h2 className="w-full self">What I’m currently doing</h2>
-          <section className="flex flex-col-reverse justify-between items-center md:flex-row">
-            <div>
-              <p className="visible md:hidden mt-4">And more : </p>
-              <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
-                <li>Flagship project</li>
-                <li>Website/portfolio refresh</li>
-                <li>FANUC line demonstration</li>
-              </ul>
-            </div>
-            {/* Alstom featured card — small, full-width, before the list.
-              Uses the hero image + constrained left dim layer + bottom fade
-              directly adapted from app/alstom/page.tsx. Compact height. */}
-            <div className="md:ml-8 lg:ml-12 overflow-hidden rounded-lg">
+          <section>
+            <h2>Recent occupations</h2>
+            {/* Alstom featured card — compact overlay treatment from app/alstom/page.tsx. */}
+            <div className="overflow-hidden rounded-lg">
               <div className="relative h-44 sm:h-48 md:h-52">
                 {/* Base image layer (full bleed) — /alstom/hero.jpg */}
                 <div
@@ -294,7 +279,7 @@ export default function PortfolioBaseline() {
                   <div className="w-full max-w-3xl flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
                     <div className="flex-1">
                       <div className="uppercase tracking-[2px] text-[10px] text-black/60 dark:text-white/70 mb-0.5">
-                        Current Internship
+                        Recent internship
                       </div>
                       <div className="text-xl font-semibold tracking-[-0.015em] text-black dark:text-white">
                         Alstom — Continuous Improvement
@@ -394,49 +379,70 @@ export default function PortfolioBaseline() {
              Order and emphasis will be discussed at the Phase 4 checkpoint. */}
         <div className="space-y-16 text-[15px] leading-relaxed">
 
-          {/* Experiences & Education — interactive list
-               Compact summaries only. "Tell me more" opens a shadcn Dialog
-               with richer details. (Alstom is now promoted to its own card above.) */}
+          {/* Experiences & Education — each row is a large tap target.
+               Opens a Dialog with richer details. No hover-only hint. */}
           <section>
             <h2>Experiences &amp; Education</h2>
-            <TooltipProvider delayDuration={150}>
-              <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
-                {experienceItems.map((item) => (
-                  <li key={item.id} className="py-0.5">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button
-                          onClick={() => openDetails(item)}
-                          className="cursor-pointer font-medium text-zinc-700 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
-                        >
-                          {item.title}
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent sideOffset={6} className="text-xs">
-                        Tell me more
-                      </TooltipContent>
-                    </Tooltip>
-                    {item.period && (
-                      <span className="ml-1.5 text-xs opacity-60">• {item.period}</span>
-                    )}
-                    <div className="pl-1 text-xs text-zinc-500 dark:text-zinc-500">{item.short}</div>
-                  </li>
-                ))}
-              </ul>
-            </TooltipProvider>
+            <ul className="mt-2 divide-y divide-zinc-100 dark:divide-zinc-900">
+              {experienceItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => openDetails(item)}
+                    className="flex w-full items-start justify-between gap-4 py-3 text-left transition hover:bg-zinc-50 dark:hover:bg-zinc-900/40"
+                  >
+                    <span>
+                      <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                        {item.title}
+                      </span>
+                      {item.period && (
+                        <span className="ml-1.5 text-xs text-zinc-500">• {item.period}</span>
+                      )}
+                      <span className="mt-0.5 block text-xs text-zinc-500 dark:text-zinc-500">
+                        {item.short}
+                      </span>
+                    </span>
+                    <span className="mt-0.5 shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
+                      Details →
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </section>
 
-          <div className="space-y-16 md:grid md:grid-cols-2 md:gap-10">
+          {/* Skills from PROJECT.md, kept scannable (keywords first, then a short gloss). */}
+          <section>
+            <h2>Skills &amp; Programming</h2>
+            <ul className="mt-2 space-y-2 text-zinc-600 dark:text-zinc-400">
+              <li>
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">C++</span>
+                {" "}with sockets, multithreading, ImGui, Boost Graph, and more
+              </li>
+              <li>
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">Robotics software</span>
+                {" "}with FANUC / ROBOGUIDE, ROS2 master control on Raspberry Pi
+              </li>
+              <li>
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">Web</span>
+                {" "}with shadcn, Next.js, 3D views, ROS control UIs, and more
+              </li>
+            </ul>
+          </section>
+
+          <div className="space-y-16 md:grid md:grid-cols-2 md:gap-10 md:space-y-0">
             <section>
-              <h2>Skills &amp; Programming</h2>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                C++ (sockets, ImGui), Web interfaces, ROS2, MATLAB/Simulink.
-              </p>
+              <h2>Sports &amp; character</h2>
+              <ul className="mt-2 list-disc pl-5 text-zinc-600 dark:text-zinc-400">
+                <li>Volleyball CVB, regional middle blocker</li>
+                <li>Commercial gym 2021 transformation</li>
+                <li>Taekwondo trained with a European champion coach</li>
+              </ul>
             </section>
             <section>
               <h2>Local involvement</h2>
               <p className="text-zinc-600 dark:text-zinc-400">
-                Village des sciences (x2)
+                Village des Sciences volunteer (twice): robots for kids, VR, a live 2024 Super Heavy catch, and a 2025 project demo.
               </p>
             </section>
           </div>
@@ -493,32 +499,6 @@ export default function PortfolioBaseline() {
               𝕏 {/* X icon here, instead of ascii letter */} @LucasDaRiYv
             </a>
             <a href="mailto:lucas@lucas-david-ry.com" className="hover:text-zinc-700 dark:hover:text-zinc-200">lucas@lucas-david-ry.com</a>
-          </div>
-
-          {/* Small credit note — "this website was made with you" + Grok logo icon (provided by you).
-              Logo sits at the far right using justify-between. */}
-          <div className="mt-6 flex items-center justify-between text-[10px] text-zinc-200 dark:text-zinc-100">
-            <div className="flex items-center gap-1.5">
-              <span>Made with</span>
-              <a href="https://grok.com" className="inline-flex items-center gap-1 hover:underline">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0.36 0.5 33.33 32" 
-                  className="h-[1.2em] w-auto"
-                  aria-hidden="true"
-                >
-                  <path d="M13.2371 21.0407L24.3186 12.8506C24.8619 12.4491 25.6384 12.6057 25.8973 13.2294C27.2597 16.5185 26.651 20.4712 23.9403 23.1851C21.2297 25.8989 17.4581 26.4941 14.0108 25.1386L10.2449 26.8843C15.6463 30.5806 22.2053 29.6665 26.304 25.5601C29.5551 22.3051 30.562 17.8683 29.6205 13.8673L29.629 13.8758C28.2637 7.99809 29.9647 5.64871 33.449 0.844576C33.5314 0.730667 33.6139 0.616757 33.6964 0.5L29.1113 5.09055V5.07631L13.2343 21.0436" fill="currentColor" />
-                  <path d="M10.9503 23.0313C7.07343 19.3235 7.74185 13.5853 11.0498 10.2763C13.4959 7.82722 17.5036 6.82767 21.0021 8.2971L24.7595 6.55998C24.0826 6.07017 23.215 5.54334 22.2195 5.17313C17.7198 3.31926 12.3326 4.24192 8.67479 7.90126C5.15635 11.4239 4.0499 16.8403 5.94992 21.4622C7.36924 24.9165 5.04257 27.3598 2.69884 29.826C1.86829 30.7002 1.0349 31.5745 0.36364 32.5L10.9474 23.0341" fill="currentColor" />
-                </svg>
-                Grok
-              </a>
-            </div>
-
-            {/* Your logo at the far right of the same line */}
-            <Link href="/" aria-label="Go to homepage">
-              <Logo className="h-5 w-5" />
-            </Link>
           </div>
         </footer>
       </div>

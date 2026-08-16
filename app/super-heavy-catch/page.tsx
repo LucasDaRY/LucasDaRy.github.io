@@ -329,24 +329,24 @@ export default function SuperHeavyCatchPage() {
               This project explores the development of <u>autonomous control software</u> for the Super Heavy booster
               to perform a precise catch maneuver, by <u>reverse-engineering</u> the real system (looking at how it works, at public materials, and proving this solution is plausible).
               The simulation environment models the booster dynamics, atmospheric effects, and the mechanical behavior of the catch mechanism.
-              But going above a simple simulation, the manoeuver wil happen, live, in a FANUC robotic cell with human-sized mockups, equipped with noisy sensors and actuators : a <u>hardware-in-the-loop simulation</u>. This makes the simulation susceptible to real noise, drift, and imprecisions.
-              It also allows me to interest people into my project, it is much more entertaining to see a rocket fly than a cylinder move on a screen.
+              Going beyond a simple simulation, the maneuver will happen live in a FANUC robotic cell with human-sized mockups, equipped with noisy sensors and actuators: a <u>hardware-in-the-loop simulation</u>. This makes the simulation susceptible to real noise, drift, and imprecision.
+              It also helps me interest people in the project: it is much more entertaining to see a rocket fly than a cylinder move on a screen.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              This is a robotics engineering study project in Polytech Dijon. Robotics is everything that has sensors, actuators, and compute so even rockets fall into our field.
-              This study project is perfect for me as it gathers passion, advanced theoretical fields, as well as real-world applications. Crazy as it is, my tutor accepted my project in only a few minutes.
+              This is a robotics engineering study project at Polytech Dijon. Robotics is everything that has sensors, actuators, and compute, so even rockets fall into our field.
+              This study project is a perfect fit for me: it brings together passion, advanced theoretical fields, and real-world applications. Crazy as it is, my tutor accepted my project in only a few minutes.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Space Exploration is awe inspiring, and is becoming the obvious next civilization step. The innovations a system like Starship is bringing is crucial for a meaningful adventure into space, for humans and for the economy.
-              Man used to work on cathedrals they would never see completed, and I qualify Space Exploration as today&quot;s cathedral, and I want to be part of it.
+              Space exploration is awe-inspiring, and is becoming the obvious next civilization step. The innovations a system like Starship is bringing are crucial for a meaningful adventure into space, for humans and for the economy.
+              Man used to work on cathedrals they would never see completed, and I qualify space exploration as today&apos;s cathedral, and I want to be part of it.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Starting at 40km altitude (~130k ft.) on a ballistic trajectory a small distance short of the launch site, the booster will go though 3 phases : 
+              Starting at 40 km altitude (~130k ft) on a ballistic trajectory a small distance short of the launch site, the booster will go through 3 phases: 
             </p>
             <ul className="list-disc list-inside text-zinc-600 dark:text-zinc-400">
               <li>Descent at high speeds (up to Mach 4)</li>
               <li>Decelerate using 13 engines</li>
-              <li>Rest itself on two arms mounted on the launch tower with 5 engines</li>
+              <li>Set itself down on two arms mounted on the launch tower with 5 engines</li>
             </ul>
             <p className="text-zinc-600 dark:text-zinc-400">
               This requires multiple guidance methods (aerodynamic surfaces and thrust vector control), and a solid control system.
@@ -356,10 +356,10 @@ export default function SuperHeavyCatchPage() {
           {/* Simulation & Control Software */}
           <Chapter id="simulation-and-control-software" title="Simulation &amp; Control Software : ProxSim">
             <p className="text-zinc-600 dark:text-zinc-400">
-              I need an environment where the physics simulation happens, and where it can send movements/receive sensor data.
-              This is why I made my own software in C++, using MuJoCo for the physical simulation, and ImGui or the interface.
-              MuJoCo is an open-source simulation engine that is widely used in AI Robotics at Nvidia and Google Deepmind, and ImGui is a widely used open-source library for building user interfaces in C++.
-              Applying multiple Meganewtons of force on rotating engines and keeping the simulation stable was a difficult job.
+              I need an environment where the physics simulation happens, and where it can send movements and receive sensor data.
+              This is why I made my own software in C++, using MuJoCo for the physical simulation, and ImGui for the interface.
+              MuJoCo is an open-source simulation engine that is widely used in AI robotics at Nvidia and Google DeepMind, and ImGui is a widely used open-source library for building user interfaces in C++.
+              Applying multiple meganewtons of force on rotating engines and keeping the simulation stable was a difficult job.
             </p>
             <figure>
               <img
@@ -372,21 +372,21 @@ export default function SuperHeavyCatchPage() {
               </figcaption>
             </figure>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              The whole goal of &quot;Control&quot; is to tell the booster what to do by itself.
-              This problem is unpredictable and it needs to work even if an engine can&apos;t start, if there is cross-wind, if a grid fin is stuck, it is a sort of sentience.
-              As of today, a simple controller (PID) is implemented to hold the booster upright, far from the end-goal : <u>Model Predictive Control</u>.
+              The whole goal of &quot;control&quot; is to tell the booster what to do by itself.
+              This problem is unpredictable and it needs to work even if an engine can&apos;t start, if there is cross-wind, or if a grid fin is stuck; it is a sort of sentience.
+              As of today, a simple controller (PID) is implemented to hold the booster upright, far from the end goal: <u>Model Predictive Control</u>.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Model Predictive Control (MPC) is a state representation of a system, and an optimization algorithm. Given a state X of the system, its model (A,B,C,D) (physical model like mass, inertia, response to commands), it estimates the future to reach a setpoint.
+              Model Predictive Control (MPC) is a state representation of a system, and an optimization algorithm. Given a state X of the system and its model (A, B, C, D) (a physical model such as mass, inertia, and response to commands), it estimates the future in order to reach a setpoint.
             </p>
             <div className="my-3 text-center text-base">
               <Latex display math="\begin{cases} \dot X = A X + BU \\ Y = C X + D U  \end{cases}" />
             </div>
             <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-              A is the free-response of the system (given no command, the booster simply falls).
-              B is how the system behaves to commands (torque, force, fuel consumption).
-              C is what is measurable (the position of the booster is measurable, and is a goal/setpoint of the controller.
-              D is often 0 (the command has no direct consequences)
+              A is the free response of the system (given no command, the booster simply falls).
+              B is how the system behaves in response to commands (torque, force, fuel consumption).
+              C is what is measurable (the position of the booster is measurable, and is a goal/setpoint of the controller).
+              D is often 0 (the command has no direct consequences).
             </p>
             <CollapsibleSection label="Details about MPC">
               <article>
@@ -399,9 +399,9 @@ export default function SuperHeavyCatchPage() {
           <Chapter id="hardware-in-the-loop-architecture" title="Hardware-in-the-Loop Architecture">
             {/* Add FANUC logo here */}
             <p className="text-zinc-600 dark:text-zinc-400">
-              For this mockup, I need both aesthetic (to be appealing to people) and be a solid work horse.
-              The Super Heavy mockup needs to have 3 actionable grid fins, a way to measure its position relative to the Tower mockup, wireless communications, onboard compute, and be attached to the FANUC arm.
-              I made multiple booster mockups and here is the current one
+              For this mockup, I need both aesthetic appeal (to be interesting to people) and a solid workhorse.
+              The Super Heavy mockup needs to have 3 actuated grid fins, a way to measure its position relative to the tower mockup, wireless communications, onboard compute, and a mount to the FANUC arm.
+              I made multiple booster mockups; here is the current one.
               Instead of a pure software simulation, the booster mock-up is physically mounted to the
               end of a FANUC industrial robotic arm. The arm executes the exact trajectory that the
               simulated catch maneuver would require, providing realistic inertial loads and kinematics.
@@ -428,11 +428,11 @@ export default function SuperHeavyCatchPage() {
           <Chapter id="fanuc-integration" title="FANUC Integration">
             <img src="/logos/fanuc.svg" alt="FANUC" className="h-7 w-auto my-4 dark:invert" />
             <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-              FANUC is a global leader in Industrial Robotics manipulators, and we have two FANUC arms at Polytech : a small one for education purpose, and a large one that had no real usage yet.
-              I planned to participate to FANUC&apos;s National Olympiads, so I needed experience with their systems anyway.
-              I am working with a R-30iA Mate controller, with an M-10iA/12S arm (V7.70 software).
+              FANUC is a global leader in industrial robotic manipulators, and we have two FANUC arms at Polytech: a small one for educational purposes, and a large one that had no real usage yet.
+              I planned to participate in FANUC&apos;s national Olympiads, so I needed experience with their systems anyway.
+              I am working with an R-30iA Mate controller, with an M-10iA/12S arm (V7.70 software).
               However, <u>I need to make it work so I can stream real-time positions</u> of the Super Heavy booster from ProxSim,
-              following the exact same trajectory, without any delay nor jerk, and this is not what industrial robots are for : they are made for pre-programmed trajectories and logic.
+              following the exact same trajectory, without delay or jerk, and this is not what industrial robots are for: they are made for pre-programmed trajectories and logic.
             </p>
             <MasonryGrid className="gap-8 mb-8">
               <figure>
@@ -459,14 +459,14 @@ export default function SuperHeavyCatchPage() {
             </MasonryGrid>
             {/* Make "fanucpy" a clickable link to https://github.com/torayeff/fanucpy */}
             <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-              I found a great library : fanucpy. It gives drivers (KAREL programs) to add to the robot, directions to setup a HTTP server on the controller, and a small python program to run on a local computer.
-              While it was a very good starting point, multiple features were missing : no continuous options as all movements were executed individually (and not chained like in a regular FANUC program),
-              commands could start multiple seconds after they were sent, no management of user frames...
-              So I reworked the whole library, from the low-level KAREL for the FANUC to the low-level C++ for the ProxSim library, to add a new Spline functionality.
-              The Spline functionality is currently working on select test cases, but is yet to prove reliability once integrated into ProxSim, more testing is needed.
+              I found a great library: fanucpy. It provides drivers (KAREL programs) to add to the robot, directions to set up an HTTP server on the controller, and a small Python program to run on a local computer.
+              While it was a very good starting point, multiple features were missing: no continuous options, as all movements were executed individually (and not chained like in a regular FANUC program),
+              commands could start multiple seconds after they were sent, and there was no management of user frames...
+              So I reworked the whole library, from the low-level KAREL for the FANUC to the low-level C++ for the ProxSim library, to add a new spline functionality.
+              The spline functionality is currently working on select test cases, but has yet to prove reliable once integrated into ProxSim; more testing is needed.
             </p>
             <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-              Here, I&apos;m sending random positions, at random intervals to the robot, and see how it handles. Comparison between the first and the second (latest) version.
+              Here, I&apos;m sending random positions at random intervals to the robot, and seeing how it handles them. Comparison between the first and the second (latest) version.
             </p>
             <MasonryGrid className="gap-8">
 
@@ -513,26 +513,26 @@ export default function SuperHeavyCatchPage() {
               <article>
                 <h2>How to have a continuous motion</h2>
                 <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-                  The delay of multiple seconds is caused by the FANUC&apos;s own motion system. The brakes have to be released fist, and then it can move.
-                  The brakes automatically activates a few seconds after the last motion concluded.
-                  The way fanucpy works by default is with a stack approach : each instructions (position, movement type, speed) have to be processed by the KAREL server and executed from a called TP program for the next to happen.
-                  I tried to use SKIP commands, but SKIPs are always stopping the robot before proceeding.
-                  My solution : have a TP program running continuously, waiting for instructions sent from the KAREL program. To manage interrupts (when the server receives a new command while the last one is not completed, I use two memory spaces, so KAREL can work on one while the TP program is looping on the other. Once KAREL finished to process it, I make the TP program switch memory space.)
+                  The delay of multiple seconds is caused by the FANUC&apos;s own motion system. The brakes have to be released first, and then it can move.
+                  The brakes automatically activate a few seconds after the last motion concluded.
+                  The way fanucpy works by default is with a stack approach: each instruction (position, movement type, speed) has to be processed by the KAREL server and executed from a called TP program before the next can happen.
+                  I tried to use SKIP commands, but SKIPs always stop the robot before proceeding.
+                  My solution: have a TP program running continuously, waiting for instructions sent from the KAREL program. To manage interrupts (when the server receives a new command while the last one is not completed), I use two memory spaces, so KAREL can work on one while the TP program is looping on the other. Once KAREL has finished processing it, I make the TP program switch memory space.
                 </p>
 
                 <h2>About curves</h2>
                 <p className="mb-8 text-zinc-600 dark:text-zinc-400">
                   This is where I ramble about interpolation and splines, and why velocities are important compared to simple geometry, and how I made the FANUC understand what I wanted.
-                  If I asked the FANUC to reach each points every milliseconds, the server wouldn&apos;t handle it, I needed better quality on lower resolution, and it comes to interpolation : filling thr blanks.
-                  The movement of the Super Heavy is smooth (as it is a system with a large inertia), so I thought about curves. Current curves interpolation systems use Bézier cures : it is practical for geometry.
+                  If I asked the FANUC to reach each point every millisecond, the server wouldn&apos;t handle it. I needed better quality at lower resolution, and that comes down to interpolation: filling the blanks.
+                  The movement of Super Heavy is smooth (as it is a system with large inertia), so I thought about curves. Current curve interpolation systems use Bézier curves: they are practical for geometry.
                 </p>
                 <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-                  As you can see in the videos above, the results of V1 are not very smooth, at some places, the arm accelerated and decelerated suddenly.
-                  This is because Bézier curves were not meant for movement, it only is for geometry. A better alternative : Hermite curves.
-                  Instead of joining multiple points, it takes the start and end position, as well as the velocities at both points.
-                  To ensure the robot catches up with the continuous flow of commands, the position of the beginning of the movement and it speed can be the robot&apos;s.
+                  As you can see in the videos above, the results of V1 are not very smooth; at some places, the arm accelerated and decelerated suddenly.
+                  This is because Bézier curves were not meant for movement; they are only for geometry. A better alternative: Hermite curves.
+                  Instead of joining multiple points, they take the start and end position, as well as the velocities at both points.
+                  To ensure the robot catches up with the continuous flow of commands, the position at the beginning of the movement and its speed can be the robot&apos;s.
                   If it is late, the interpolation will push the robot faster to catch up.
-                  I then calculate in the robot, the interpolation intermediate positions/speeds, write it to PRs and sends the signal to switch memories 
+                  I then calculate, in the robot, the interpolation intermediate positions/speeds, write them to PRs, and send the signal to switch memories. 
                 </p>
                 
                 <MasonryGrid className="mb-8 gap-8">
@@ -573,9 +573,9 @@ BEGIN
   haha
 END`}/>
                 <p className="my-8 text-zinc-600 dark:text-zinc-400">
-                  TP programs are interpreted, that means I can edit PRs at run time, yes. However, FANUC&apos;s motion systems reads ahead in the program, to plan the trajectory.
-                  The &quot;ahead&quot; number of position depends on the movement options, an &quot;ACC&quot; option makes the &quot;ahead&quot; count increase by one, so does &quot;CNT&quot; when non-zero.
-                  So I keep track of the current movement index in the memory, and start the next motion as if ahead by ~2 positions. This is the secret sauce to make the trajectory butter smooth and not have small hiccups/slowdowns.
+                  TP programs are interpreted, which means I can edit PRs at run time. However, FANUC&apos;s motion system reads ahead in the program to plan the trajectory.
+                  The &quot;ahead&quot; number of positions depends on the movement options: an &quot;ACC&quot; option makes the &quot;ahead&quot; count increase by one, and so does &quot;CNT&quot; when non-zero.
+                  So I keep track of the current movement index in memory, and start the next motion as if ahead by ~2 positions. This is the secret sauce to make the trajectory butter-smooth and avoid small hiccups/slowdowns.
                 </p>
               </article>
             </CollapsibleSection>
@@ -584,12 +584,12 @@ END`}/>
           {/* Physical mockups, CAD design and design choices */}
           <Chapter id="mockups" title="Physical mockups">
             <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-              The goal of this project is to reverse engineer a complex system, but also to prove to people the tech exists for revolutionary transports,
-              I need to interest people into my project, for visitors of sciences fairs, school visits...
-              This means I have to make a mockup both practical, easy to 3D print (this is my only available manufacturing solution), and make it appealing.
+              The goal of this project is to reverse-engineer a complex system, but also to prove to people that the tech exists for revolutionary transport.
+              I need to interest people in my project, for visitors of science fairs, school visits, and so on.
+              This means I have to make a mockup that is practical, easy to 3D-print (this is my only available manufacturing solution), and appealing.
             </p>
             <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-              As my project evolved, so did the Super Heavy booster&apos;s real design. Accounting to usual iterations, I made 4 different versions.
+              As my project evolved, so did the Super Heavy booster&apos;s real design. Accounting for the usual iterations, I made 4 different versions.
             </p>
 
             <MasonryGrid className="mb-8 gap-8">
@@ -619,15 +619,15 @@ END`}/>
             </MasonryGrid>
 
             <p className="mb-4 text-zinc-600 dark:text-zinc-400">
-              It stands ~70cm high, made in three sections (actuators, logic/comms, and battery).
-              The three parts assemble using a twist-and-lock contraption after the screws were too ugly and unreliable with heavy parts swinging around for hours.
+              It stands ~70 cm high, made in three sections (actuators, logic/comms, and battery).
+              The three parts assemble using a twist-and-lock mechanism after the screws were too ugly and unreliable with heavy parts swinging around for hours.
             </p>
 
             <CollapsibleSection>
               <article>
                 <p>
-                  Features an ESP32 (used both for communications, and IMU processing with low-pass filters (Kalmann filters might come later))
-                  Made to fit and hold a whole breadboard, big battery to have autonomy, tight servos holder. 
+                  Features an ESP32 (used both for communications and IMU processing with low-pass filters; Kalman filters might come later).
+                  Made to fit and hold a whole breadboard, a large battery for autonomy, and a tight servo holder. 
                 </p>
                 <p>Printed on a BambuLab A1 printer, using 0.2 and 0.4 nozzles, with PLA.</p>
               </article>
