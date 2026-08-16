@@ -37,6 +37,37 @@ Violating the small-step + explicit approval + local verification discipline mak
 
 ---
 
+## 🚫 CRITICAL: NEVER EDIT LIBRARIES OR node_modules
+
+**YOU ARE NOT SUPPOSED TO EDIT LIBRARIES.**
+
+If the user later runs `npm update`, `npx shadcn@latest`, `npm install`, or any other dependency refresh: **EVERYTHING WOULD BREAK 110%**.
+
+Editing files under `node_modules/`, patching vaul, Radix UI, Next.js internals, or directly mutating the shadcn/ui primitives in `components/ui/` (the installed library copies) is **strictly forbidden**.
+
+**This is equivalent of sending me to fuck myself and is a serious insult to the project's maintainability.**
+
+**Why this is non-negotiable**:
+- Library updates overwrite or conflict with hand-edits.
+- The project becomes un-mergeable, un-updatable, and full of landmines.
+- Future you (or a future agent) will have no idea what is custom vs what is supposed to come from the package.
+- It destroys long-term ownership and reproducibility.
+
+**Correct ways to customize library components**:
+- Pass props, `className`, `children`, or use the component's extension points.
+- Wrap the primitive in your own component (e.g. `MyDrawer.tsx` that uses `<Drawer ...>` internally).
+- For deep changes you truly need to own: copy the entire component file out of `components/ui/` into a project path (e.g. `components/custom/Drawer.tsx`) and import from there. Never touch the original in `components/ui/`.
+- Use CSS overrides, `@theme` variables, or global styles.
+- When shadcn or the library publishes an update to a component, review the upstream diff and manually port *only* the safe parts.
+
+**If you ever feel the urge to run `search_replace` on anything inside `node_modules`, or to "just tweak" a file under `components/ui/` to fix something in the library itself — STOP.**
+
+Ask the user. The answer will almost always be "no, customize around it instead".
+
+Any future agent or script that violates this rule is actively harming the project.
+
+---
+
 ## Tech Notes for Next.js 16 + Tailwind 4 + shadcn/ui
 
 - Tailwind is v4 (CSS-first via `@tailwindcss/postcss`, no traditional `tailwind.config.js` in many setups; theming lives in CSS `@theme`).

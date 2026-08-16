@@ -262,6 +262,12 @@ export default function AlstomContinuousImprovementPage() {
               <div className="text-zinc-600 dark:text-zinc-400">
                 <p>This machine has two FANUC robots, and is tasked to screw a valve-holer that compress a spring at a given preload on the piston/embase.</p>
                 <p>It takes the pre-assembled piston, verify the spring&apos;s stiffness, and screws the valve holder.</p>
+                <p>The pieces are tiny and the assembly was not originally thought for an automated production in the first place. I participated to reduce the production stops by 62% by : </p>
+                <ol>
+                  <li>Realigning taught positions</li>
+                  <li>Editing the screwing processes</li>
+                  <li>Implementing a new vision program</li>
+                </ol>
               </div>
               <figure>
                 <img

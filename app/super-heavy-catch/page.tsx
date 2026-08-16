@@ -652,7 +652,7 @@ END`}/>
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Overall view of the test cell and catch envelope (temporary caption)
+                  Overall view of the test cell and catch envelope
                 </figcaption>
               </figure>
 
@@ -663,7 +663,7 @@ END`}/>
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Reference full-stack vehicle (temporary)
+                  Reference full-stack vehicle
                 </figcaption>
               </figure>
 
@@ -674,7 +674,7 @@ END`}/>
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Programming the FANUC arm motion profile (temporary caption)
+                  Programming the FANUC arm motion profile
                 </figcaption>
               </figure>
             </MasonryGrid>
@@ -694,7 +694,7 @@ END`}/>
                 Your browser does not support the video tag.
               </video>
               <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                IFT-5 recap footage used for maneuver reference and timing (temporary)
+                IFT-5 recap footage used for maneuver reference and timing
               </figcaption>
             </figure>
             <CollapsibleSection>
