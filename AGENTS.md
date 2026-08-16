@@ -46,3 +46,13 @@ Violating the small-step + explicit approval + local verification discipline mak
 - 3D (React Three Fiber) must be client-only (use `dynamic` import with `{ ssr: false }` or equivalent + Suspense). Never SSR WebGL canvases.
 - Always prefer the minimal working solution first. Add complexity only after the user has seen and approved the simpler version locally.
 - Read `node_modules/next/dist/docs/` (or the official site) for any App Router / Server Components / static export behavior before using advanced features.
+
+---
+
+## Cursor Cloud specific instructions
+
+- Single-service project: a Next.js 16 (Turbopack) static-export site using **npm** (`package-lock.json`). There is no backend, database, or test suite. Commands live in `package.json`: `npm run dev` (port 3000), `npm run build`, `npm run lint`.
+- Dependencies are refreshed automatically by the startup update script (`npm ci`); no manual install needed at session start.
+- `next.config.ts` sets `output: "export"`, so `npm run build` emits a static site to `out/`. `npm start` (`next start`) is not meaningful with static export — use `npm run dev` for local development.
+- `npm run lint` currently reports 2 pre-existing errors (`react-hooks/set-state-in-effect` in `components/ui/carousel.tsx` and a warning in `components/MasonryGrid.tsx`). These are existing code issues, not environment breakage.
+- A harmless `404 /favicon.svg` may appear in the dev console; it does not affect functionality.
