@@ -144,6 +144,18 @@ function Chapter({
   )
 }
 
+/** Hand-maintained page stamp (not git). Shown under the desktop ToC and above mobile content. */
+const LAST_UPDATED = { iso: "2026-08-27", label: "27 August 2026" }
+
+function LastUpdated({ className }: { className?: string }) {
+  return (
+    <p className={className}>
+      Last updated{" "}
+      <time dateTime={LAST_UPDATED.iso}>{LAST_UPDATED.label}</time>
+    </p>
+  )
+}
+
 export default function SuperHeavyCatchPage() {
   const [isVideoReady, setIsVideoReady] = useState(false)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
@@ -312,14 +324,14 @@ export default function SuperHeavyCatchPage() {
               <li><a href="#fanuc-integration" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">FANUC Integration</a></li>
               <li><a href="#mockups" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Physical mockups</a></li>
               <li><a href="#visual-documentation" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Visual Documentation</a></li>
-              <li><a href="#real-world-challenges" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Real-World Challenges</a></li>
               <li><a href="#control-approach" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Control Approach</a></li>
-              <li><a href="#current-status-and-next-steps" className="block rounded px-2 py-1 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100 transition-colors">Current Status &amp; Next Steps</a></li>
             </ul>
+            <LastUpdated className="mt-4 px-2 text-[11px] text-zinc-400 dark:text-zinc-500" />
           </nav>
 
           {/* Main content column (keeps readable width) */}
           <div className="min-w-0 lg:pb-8">
+            <LastUpdated className="mb-6 text-[11px] text-zinc-400 dark:text-zinc-500 lg:hidden" />
             <div className="space-y-16 text-[15px] leading-relaxed">
 
           {/* Overview */}
@@ -368,7 +380,7 @@ export default function SuperHeavyCatchPage() {
                 className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
               />
               <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                Screenshot of ProxSim while a simulation was running with a Super Heavy V2. Camera control, telemetry, data collection, robotic cell control center.
+                Screenshot of ProxSim while a simulation was running with a Super Heavy V3. Camera control, telemetry, vehicule commands, and ghost booster display.
               </figcaption>
             </figure>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
@@ -390,7 +402,10 @@ export default function SuperHeavyCatchPage() {
             </p>
             <CollapsibleSection label="Details about MPC">
               <article>
-                <p>Where I should think next : about the convergence, Lossless Convexification and Lars Blackmore&apos;s work, comparison with a raw G-FOLD algorithm found somewhere.</p>
+                <p>MPC with constraints (thrust bounds, gimbal directions, not hit the tower...), can&apos;t be solved analytically, it is an optimization problem instead. Given a cost function J, we need to find the least costly (the cost can be precision, fuel consumption ...) solution to &quot;converge&quot; to.</p>
+                <p>One of the greatest issues in optimization is dealing with &quot;non-convex&quot; problems, as it implies that the found solution we converge to might not be the optimal solution : stuck in a local minima while searching for the global minima.</p>
+                <p>This <u>Soft Landing</u> problem has non-convexities coming from thrust vectors when gimballing and a variable thrust is possible for example, and this is solved by Lossless Convexification, a paper from Lars Blackmore, who worked on SpaceX&apos;s Falcon 9 landing control and today&apos;s Starship upper stage control.</p>
+                <p>Lossless Convexification proposes a re-formulation of the Soft Landing problem that is convex, and enables optimization algorithms to find the optimal solution given it exists.</p>
               </article>
             </CollapsibleSection>
           </Chapter>
@@ -411,17 +426,9 @@ export default function SuperHeavyCatchPage() {
               into the simulation loop. This closes the loop between the virtual vehicle dynamics
               and real mechanical hardware, exposing issues that pure simulation would miss.
             </p>
-            <CollapsibleSection>
-              <article>
-                <p>The Pythagorean theorem for any right triangle with legs a, b and hypotenuse c:</p>
-                <div className="my-3 text-center text-lg">
-                  <Latex display math="a^2 + b^2 = c^2" />
-                </div>
-                <p className="mt-2 text-xs opacity-70">
-                  Placeholder technical content. The real depth (equations, code, derivations, etc.) will be provided later.
-                </p>
-              </article>
-            </CollapsibleSection>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+              Currently, the data still lacks processing (IMU drift), and the feedback loop is not done, I still do not know if I can make the communication fast enough for the simulation 50Hz control frequency.
+            </p>
           </Chapter>
 
           {/* FANUC Integration */}
@@ -522,15 +529,14 @@ export default function SuperHeavyCatchPage() {
 
                 <h2>About curves</h2>
                 <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-                  This is where I ramble about interpolation and splines, and why velocities are important compared to simple geometry, and how I made the FANUC understand what I wanted.
-                  If I asked the FANUC to reach each point every millisecond, the server wouldn&apos;t handle it. I needed better quality at lower resolution, and that comes down to interpolation: filling the blanks.
-                  The movement of Super Heavy is smooth (as it is a system with large inertia), so I thought about curves. Current curve interpolation systems use Bézier curves: they are practical for geometry.
+                  If I sent every points at each simulation step, the FANUC may not handle it as it was not made for high-bandwidth communications, so an interpolation is necessary by the FANUC controller.
+                  Super Heavy being really heavy, it has a large inertia, which comes down to less jitter and an easier interpolation with less control points.
+
                 </p>
                 <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-                  As you can see in the videos above, the results of V1 are not very smooth; at some places, the arm accelerated and decelerated suddenly.
-                  This is because Bézier curves were not meant for movement; they are only for geometry. A better alternative: Hermite curves.
-                  Instead of joining multiple points, they take the start and end position, as well as the velocities at both points.
-                  To ensure the robot catches up with the continuous flow of commands, the position at the beginning of the movement and its speed can be the robot&apos;s.
+                  My first try was using Bézier curves, they are everywhere, they are simple, and I just had to find the control point that would make the start smooth with the current robot motion.
+                  However, Spline V1 was not smooth enough as scales were hard to get right. Bézier curves were never meant for movement. I then found Hermite curves.
+                  Hermite curves do not take a control point that corresponds directly to nothing except intersections of 2 lines in a 3D space, they take the start and end velocities instead.
                   If it is late, the interpolation will push the robot faster to catch up.
                   I then calculate, in the robot, the interpolation intermediate positions/speeds, write them to PRs, and send the signal to switch memories. 
                 </p>
@@ -561,17 +567,14 @@ export default function SuperHeavyCatchPage() {
 
                 </MasonryGrid>
 
-                <p>
+                {/* <p>
                   Finally, here is the KAREL code
                 </p>
                 <CodeBlock
                 language="KAREL"
                 code={`FUNCTION dothis(arg: integer):
-CONST
-  var1: string
-BEGIN
-  haha
-END`}/>
+Find the KAREL Spline code
+END`}/> */}
                 <p className="my-8 text-zinc-600 dark:text-zinc-400">
                   TP programs are interpreted, which means I can edit PRs at run time. However, FANUC&apos;s motion system reads ahead in the program to plan the trajectory.
                   The &quot;ahead&quot; number of positions depends on the movement options: an &quot;ACC&quot; option makes the &quot;ahead&quot; count increase by one, and so does &quot;CNT&quot; when non-zero.
@@ -629,7 +632,7 @@ END`}/>
                   Features an ESP32 (used both for communications and IMU processing with low-pass filters; Kalman filters might come later).
                   Made to fit and hold a whole breadboard, a large battery for autonomy, and a tight servo holder. 
                 </p>
-                <p>Printed on a BambuLab A1 printer, using 0.2 and 0.4 nozzles, with PLA.</p>
+                <p>Printed on a BambuLab A1 printer, using 0.2 and 0.4 nozzles, with PLA (poor choice of material as it melted in the Sun...).</p>
               </article>
             </CollapsibleSection>
           </Chapter>
@@ -647,8 +650,8 @@ END`}/>
             <MasonryGrid className="gap-8">
               <figure>
                 <img
-                  src="/sh_catch/sh_catch_far.jpg"
-                  alt="Wide view of the Super Heavy catch simulation setup"
+                  src="/sh_catch/proxsim_cell.png"
+                  alt="Wide view of the Super Heavy catch simulation HIL setup"
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
@@ -674,7 +677,7 @@ END`}/>
                   className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
                 />
                 <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-                  Programming the FANUC arm motion profile
+                  Program experimenting with path interruption and look-aheads.
                 </figcaption>
               </figure>
             </MasonryGrid>
@@ -697,134 +700,39 @@ END`}/>
                 IFT-5 recap footage used for maneuver reference and timing
               </figcaption>
             </figure>
-            <CollapsibleSection>
-              <article>
-                <p>The Pythagorean theorem for any right triangle with legs a, b and hypotenuse c:</p>
-                <div className="my-3 text-center text-lg">
-                  <Latex display math="a^2 + b^2 = c^2" />
-                </div>
-                <p className="mt-2 text-xs opacity-70">
-                  Placeholder technical content. The real depth (equations, code, derivations, etc.) will be provided later.
-                </p>
-              </article>
-            </CollapsibleSection>
           </Chapter>
 
-          {/* Real-World Challenges (temporary placeholder) */}
-          <Chapter id="real-world-challenges" title="Real-World Challenges">
-            <p className="text-zinc-600 dark:text-zinc-400">
-              Integrating the simulation timestep with the physical robot’s control loop introduced
-              timing and determinism problems. Small delays in the communication bridge could
-              destabilize the closed-loop behavior.
-            </p>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Mechanical compliance in the mock-up mount, robot joint flexibility, and sensor
-              noise all affect the fidelity of the HIL test. Safety systems and emergency stops
-              had to be designed so that a software fault would not damage the arm or cell.
-            </p>
-
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              A simplified excerpt from the real-time communication bridge shows the kind of
-              timing-sensitive C++ that had to be carefully bounded for determinism:
-            </p>
-            <div className="mt-3">
-              <CodeBlock
-                code={`// Real-time bridge loop (simplified, temporary example)
-void control_loop() {
-    while (running) {
-        auto desired = simulate_descent();
-
-        auto start = std::chrono::steady_clock::now();
-
-        if (!send_to_fanuc(desired)) {
-            trigger_emergency_stop();
-            return;
-        }
-
-        Feedback fb = receive_feedback();   // source of jitter
-        apply_correction(fb);
-
-        auto elapsed = std::chrono::steady_clock::now() - start;
-        if (elapsed > std::chrono::milliseconds(12)) {
-            log_determinism_violation(elapsed);
-        }
-
-        std::this_thread::sleep_until(start + std::chrono::milliseconds(10));
-    }
-}`}
-              />
-            </div>
-            <CollapsibleSection>
-              <article>
-                <p>The Pythagorean theorem for any right triangle with legs a, b and hypotenuse c:</p>
-                <div className="my-3 text-center text-lg">
-                  <Latex display math="a^2 + b^2 = c^2" />
-                </div>
-                <p className="mt-2 text-xs opacity-70">
-                  Placeholder technical content. The real depth (equations, code, derivations, etc.) will be provided later.
-                </p>
-              </article>
-            </CollapsibleSection>
-          </Chapter>
-
-          {/* Control Approach & Future Math (temporary placeholder) */}
+          {/* Control Approach & Future Math */}
           <Chapter id="control-approach" title="Control Approach">
             <p className="text-zinc-600 dark:text-zinc-400">
-              The booster uses a combination of attitude control via grid fins / thrust vectoring
-              and precise vertical positioning during the final meters. Early tests focus on
-              attitude hold and descent rate tracking.
+              During unpowered descent, Super Heavy guides itself with its three grid fins, and its own large body inducing a lift.
+              Aerodynamics studies are to be concluded, to estimate the drag of the booster and the torque created by the gridfins. I began to learn OpenFOAM, but as this work is far from my Robotics domain, I let AI do most of the implementation of aerodynamics in ProxSim and will let it find the constants in simulations, it has yet to be done.
             </p>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              The dynamics of the booster near the catch point can be locally approximated by a linear
-              state-space model. A simplified continuous-time representation is:
-            </p>
-            <div className="my-3 text-center text-base">
-              <Latex display math="\dot{\mathbf{x}} = A \mathbf{x} + B \mathbf{u}" />
-            </div>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Here <Latex math="\mathbf{x}" /> is the state vector (attitude, rates, position, velocity),
-              <Latex math="\mathbf{u}" /> contains the control inputs (thrust vectoring, grid fin
-              deflections), and the matrices A and B are identified or derived from the simulation
-              model. Full derivation and discretization for the flight software will be added in
-              a future pass.
-            </p>
-            <CollapsibleSection>
-              <article>
-                <p>The Pythagorean theorem for any right triangle with legs a, b and hypotenuse c:</p>
-                <div className="my-3 text-center text-lg">
-                  <Latex display math="a^2 + b^2 = c^2" />
-                </div>
-                <p className="mt-2 text-xs opacity-70">
-                  Placeholder technical content. The real depth (equations, code, derivations, etc.) will be provided later.
-                </p>
-              </article>
-            </CollapsibleSection>
+            <MasonryGrid className="gap-8">
+              <figure>
+                <img
+                  src="/sh_catch/first-cdf-bot-pressure.png"
+                  alt="FANUC robot programming interface"
+                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
+                />
+                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                  Simple CFD simulation done by a Grok Bot using OpenFOAM
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img
+                  src="/sh_catch/first-cdf-bot-pressure_grad.png"
+                  alt="FANUC robot programming interface"
+                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
+                />
+                <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                  Simple CFD simulation done by a Grok Bot using OpenFOAM
+                </figcaption>
+              </figure>
+            </MasonryGrid>
           </Chapter>
 
-          {/* Current Status */}
-          <Chapter id="current-status-and-next-steps" title="Current Status &amp; Next Steps">
-            <p className="text-zinc-600 dark:text-zinc-400">
-              The basic HIL loop is running and the arm can replay representative trajectories.
-              Current work focuses on improving synchronization, adding better instrumentation,
-              and validating that the flight software branch produces stable catch behavior.
-            </p>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              Next milestones include logging full state traces, running Monte-Carlo style
-              variations on the physical hardware, and gradually increasing the fidelity of
-              the mock-up and sensor models.
-            </p>
-            <CollapsibleSection>
-              <article>
-                <p>The Pythagorean theorem for any right triangle with legs a, b and hypotenuse c:</p>
-                <div className="my-3 text-center text-lg">
-                  <Latex display math="a^2 + b^2 = c^2" />
-                </div>
-                <p className="mt-2 text-xs opacity-70">
-                  Placeholder technical content. The real depth (equations, code, derivations, etc.) will be provided later.
-                </p>
-              </article>
-            </CollapsibleSection>
-          </Chapter>
             </div>
 
             {/* Minimal project footer — same spirit as the homepage footer */}
