@@ -294,12 +294,13 @@ export default function AlstomContinuousImprovementPage() {
             <h2>Key Projects &amp; Contributions</h2>
             <p className="text-zinc-600 dark:text-zinc-400">
               I collaborated closely with Loïk to adjust taught positions of saved recipes and to test new changes.
-              I wrote instruction sheets so the solutions would stay maintainable.
+              I wrote instruction sheets so the new vision process would stay maintainable, togglable and adjustable.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-              I implemented TeepTrak so the production unit manager can see machine performance (TRS, TRG) and has proper tracking of technical issues. Issues are reported by the operator for now, but automatic reports are almost functional (waiting for more PLC outputs). <br/>
+              I implemented TeepTrak so the production unit manager can see machine performance (TRS, TRG) and has proper tracking of technical issues.<br/>
+              Issues are reported by the operator for now, but automatic reports are almost functional (logic and alarms done, waiting for more PLC outputs). <br/>
               I made a new vision process so the screwdriver starts aligned with the valve holder.<br/>
-              I improved a solution to greatly reduce cross-threading issues.
+              Improved a solution to greatly reduce cross-threading issues.
             </p>
           </section>
 
