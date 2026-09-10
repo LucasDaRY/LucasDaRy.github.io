@@ -223,10 +223,6 @@ export default function PortfolioBaseline() {
               Civilization has been in V1 for too long.
             </p>
 
-            {/* Status hint — adapted for hero overlay contrast */}
-            <div className="mt-6 inline-flex items-center rounded-full border border-zinc-400 dark:border-white/30 px-3 py-1 text-xs tracking-widest text-zinc-600 dark:text-white/70 animate-pulse">
-              PORTFOLIO REFRESH IN PROGRESS
-            </div>
           </div>
 
           {/* Scroll indicator at bottom (same as project page) */}
