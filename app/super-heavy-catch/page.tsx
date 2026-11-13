@@ -383,6 +383,23 @@ export default function SuperHeavyCatchPage() {
                 Screenshot of ProxSim while a simulation was running with a Super Heavy V3. Camera control, telemetry, vehicule commands, and ghost booster display.
               </figcaption>
             </figure>
+            <figure className="mt-4">
+              <video
+                className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800"
+                controls
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              >
+                <source src="/sh_catch/proxsim_flight15_catch.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                ProxSim catch simulation of the dogleg maneuver expected for Flight 15 of Starship. The maneuver uses 45 metric tonnes of fuel, and the booster is successfully caught.
+              </figcaption>
+            </figure>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
               The whole goal of &quot;control&quot; is to tell the booster what to do by itself.
               This problem is unpredictable and it needs to work even if an engine can&apos;t start, if there is cross-wind, or if a grid fin is stuck; it is a sort of sentience.
