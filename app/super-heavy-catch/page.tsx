@@ -145,7 +145,7 @@ function Chapter({
 }
 
 /** Hand-maintained page stamp (not git). Shown under the desktop ToC and above mobile content. */
-const LAST_UPDATED = { iso: "2026-08-27", label: "27 August 2026" }
+const LAST_UPDATED = { iso: "2026-11-13", label: "13 November 2026" }
 
 function LastUpdated({ className }: { className?: string }) {
   return (
@@ -403,7 +403,7 @@ export default function SuperHeavyCatchPage() {
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
               The whole goal of &quot;control&quot; is to tell the booster what to do by itself.
               This problem is unpredictable and it needs to work even if an engine can&apos;t start, if there is cross-wind, or if a grid fin is stuck; it is a sort of sentience.
-              As of today, a simple controller (PID) is implemented to hold the booster upright, far from the end goal: <u>Model Predictive Control</u>.
+              As of today, an MPC (<u>Model Predictive Control</u>) plant allows the booster to get caught using its engines only, with no aerodynamic guidance. The MPC has a target point between the catch arms, and it controls the 13 engines to guide the booster between them.
             </p>
             <p className="mt-4 text-zinc-600 dark:text-zinc-400">
               Model Predictive Control (MPC) is a state representation of a system, and an optimization algorithm. Given a state X of the system and its model (A, B, C, D) (a physical model such as mass, inertia, and response to commands), it estimates the future in order to reach a setpoint.
@@ -423,6 +423,16 @@ export default function SuperHeavyCatchPage() {
                 <p>One of the greatest issues in optimization is dealing with &quot;non-convex&quot; problems, as it implies that the found solution we converge to might not be the optimal solution : stuck in a local minima while searching for the global minima.</p>
                 <p>This <u>Soft Landing</u> problem has non-convexities coming from thrust vectors when gimballing and a variable thrust is possible for example, and this is solved by Lossless Convexification, a paper from Lars Blackmore, who worked on SpaceX&apos;s Falcon 9 landing control and today&apos;s Starship upper stage control.</p>
                 <p>Lossless Convexification proposes a re-formulation of the Soft Landing problem that is convex, and enables optimization algorithms to find the optimal solution given it exists.</p>
+                <figure className="mt-4">
+                  <img
+                    src="/sh_catch/mpc_predicted-states.png"
+                    alt="Booster with its controlled states and its predicted states"
+                    className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover"
+                  />
+                  <figcaption className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                    The booster with its controlled states and its predicted states.
+                  </figcaption>
+                </figure>
               </article>
             </CollapsibleSection>
           </Chapter>
